@@ -1,0 +1,31 @@
+{
+  "name": "mintu-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:release": "tauri build --no-bundle",
+    "build:debug": "tauri build --debug --no-bundle",
+    "preview": "vite preview",
+    "test": "node --test --experimental-strip-types tests/*.test.ts",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@codemirror/lang-css": "^6.3.1",
+    "@codemirror/lang-html": "^6.4.12",
+    "@codemirror/lang-javascript": "^6.2.5",
+    "@codemirror/lang-json": "^6.0.2",
+    "@codemirror/lang-python": "^6.2.1",
+    "@codemirror/lang-rust": "^6.0.2",
+    "@codemirror/theme-one-dark": "^6.1.3",
+    "@tauri-apps/api": "^2.2.0",
+    "codemirror": "^6.0.2"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.2.7",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0"
+  }
+}
