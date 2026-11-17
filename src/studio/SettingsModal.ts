@@ -84,7 +84,7 @@ export class SettingsModal {
               <label for="input-cloud-apikey">API Açarı (Windows Credential Manager-də şifrələnir)</label>
               <div class="key-status-row">
                 <span id="cloud-key-status" class="key-status-badge">Yoxlanılır...</span>
-                <button type="button" id="btn-delete-cloud-key" class="studio-btn studio-btn-sm" style="display: none; color: #f87171;">Açarı Sil</button>
+                <button type="button" id="btn-delete-cloud-key" class="studio-btn studio-btn-sm studio-btn-danger" style="display: none;">Açarı Sil</button>
               </div>
               <input id="input-cloud-apikey" class="studio-input" type="password" placeholder="Yeni API açarı daxil edin..." autocomplete="off" />
             </div>
