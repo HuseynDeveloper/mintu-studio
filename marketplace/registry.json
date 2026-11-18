@@ -1,0 +1,76 @@
+[
+  {
+    "id": "mintu-react-tailwind",
+    "name": "React & TypeScript Snippets Pro",
+    "version": "1.2.0",
+    "author": "Mintu Team",
+    "description": "Modern React functional components, hooks, strict TypeScript interfaces, and clean component architecture rules.",
+    "category": "Frontend",
+    "enabled": true,
+    "ai_rules": [
+      "When writing React components, prefer functional components with explicit TypeScript Props interfaces and accessible semantic HTML."
+    ],
+    "snippets": [
+      {
+        "prefix": "rfc",
+        "label": "React Functional Component (TSX)",
+        "body": "import React from 'react';\n\ninterface Props {\n  title: string;\n}\n\nexport const Component: React.FC<Props> = ({ title }) => {\n  return (\n    <section>\n      <h2>{title}</h2>\n    </section>\n  );\n};\n",
+        "languages": ["ts", "tsx", "js", "jsx"]
+      }
+    ],
+    "commands": [
+      { "id": "react-typecheck", "label": "TypeScript Check (tsc --noEmit)", "command": "npx tsc --noEmit" }
+    ],
+    "api_templates": []
+  },
+  {
+    "id": "mintu-python-fastapi",
+    "name": "Python & FastAPI Kit",
+    "version": "1.1.0",
+    "author": "Mintu Team",
+    "description": "FastAPI endpoints, Pydantic v2 models, pytest templates, and Python typing best practices.",
+    "category": "Backend",
+    "enabled": true,
+    "ai_rules": [
+      "When writing Python code, always include full type annotations (PEP 604) and clear docstrings."
+    ],
+    "snippets": [
+      {
+        "prefix": "fapi",
+        "label": "FastAPI Route Handler",
+        "body": "@app.get('/items/{item_id}')\nasync def read_item(item_id: int) -> dict:\n    return {'item_id': item_id}\n",
+        "languages": ["py"]
+      }
+    ],
+    "commands": [
+      { "id": "py-pytest", "label": "Run Pytest", "command": "pytest -v" }
+    ],
+    "api_templates": [
+      {
+        "name": "FastAPI Local Healthcheck",
+        "method": "GET",
+        "url": "http://127.0.0.1:8000/health",
+        "headers": { "Accept": "application/json" },
+        "body": ""
+      }
+    ]
+  },
+  {
+    "id": "mintu-docker-devops",
+    "name": "Docker & DevOps Toolkit",
+    "version": "1.0.0",
+    "author": "Mintu Community",
+    "description": "Production multi-stage Dockerfile rules, compose helpers, and quick container commands.",
+    "category": "DevOps",
+    "enabled": true,
+    "ai_rules": [
+      "When creating Dockerfiles, use multi-stage builds, non-root users, and minimal base images."
+    ],
+    "snippets": [],
+    "commands": [
+      { "id": "docker-ps", "label": "Docker Running Containers", "command": "docker ps --format \"table {{.Names}}\\t{{.Status}}\\t{{.Ports}}\"" },
+      { "id": "docker-up", "label": "Docker Compose Up", "command": "docker compose up -d" }
+    ],
+    "api_templates": []
+  }
+]

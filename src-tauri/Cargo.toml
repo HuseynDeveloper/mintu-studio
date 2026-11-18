@@ -2,7 +2,8 @@
 name = "mintu-studio"
 version = "0.1.0"
 description = "Mintu Studio - Standalone AI Code Workspace"
-authors = ["Mintu Contributors"]
+authors = ["Mintu Studio Contributors"]
+license = "GPL-3.0-only"
 edition = "2021"
 
 [lib]
@@ -16,9 +17,13 @@ tauri-build = { version = "2", features = [] }
 tauri = { version = "2", features = ["devtools"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "process", "io-util", "time", "sync"] }
+reqwest = { version = "0.12", default-features = false, features = ["native-tls", "stream"] }
+futures-util = "0.3"
 windows-sys = { version = "0.59", features = [
   "Win32_Foundation",
   "Win32_Security",
   "Win32_Security_Credentials",
+  "Win32_Storage_FileSystem",
+  "Win32_System_SystemInformation",
 ] }

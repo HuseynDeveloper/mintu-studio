@@ -1,5 +1,23 @@
-node_modules
-dist
-src-tauri/target
+node_modules/
+dist/
+src-tauri/target/
 *.log
 .DS_Store
+Thumbs.db
+
+# Environment & secrets (never commit!)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*secret*
+*credential*
+
+# Large local models & build installers
+*.gguf
+*.bin
+release/*.exe
+release/*.msi

@@ -38,13 +38,28 @@
     "targets": ["nsis"],
     "shortDescription": "Standalone AI Code Workspace with Local and Cloud Models",
     "longDescription": "Mintu Studio is a standalone desktop AI code workspace supporting local models and cloud providers with strict workspace security.",
-    "copyright": "Copyright 2026 Mintu Contributors (MIT)",
+    "copyright": "Copyright 2026 Mintu Studio Contributors (GPL-3.0-only; marketplace/ under MIT)",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
+    ],
+    "fileAssociations": [
+      {
+        "ext": [
+          "ts", "tsx", "js", "jsx", "mjs", "cjs",
+          "py", "rs", "go", "c", "cpp", "h", "hpp",
+          "java", "cs", "php", "rb", "lua",
+          "json", "yaml", "yml", "toml", "xml", "csv",
+          "html", "htm", "css", "scss", "vue", "svelte",
+          "md", "txt", "sql", "sh", "ps1", "bat"
+        ],
+        "name": "Mintu Studio Source File",
+        "description": "Open with Mintu Studio",
+        "role": "Editor"
+      }
     ]
   }
 }

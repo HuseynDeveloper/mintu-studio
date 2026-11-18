@@ -1,0 +1,32 @@
+name: Extension Marketplace Submission
+description: Submit a declarative JSON extension to the Mintu Studio Community Marketplace
+title: "[Extension] "
+labels: ["extension-marketplace"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit a declarative extension for **Mintu Studio** (`marketplace/registry.json`).
+        All entries in `marketplace/` are licensed under the **MIT License**.
+  - type: input
+    id: ext_name
+    attributes:
+      label: Extension Name
+      placeholder: e.g. FastAPI Snippets & Rules
+    validations:
+      required: true
+  - type: textarea
+    id: ext_json
+    attributes:
+      label: Exported Extension JSON
+      description: Paste the JSON copied from Mintu Studio -> Extensions -> Export .json / Publish to GitHub.
+      render: json
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I confirm this extension is purely declarative JSON with no secrets or malicious commands, and I agree to license it under MIT.
+          required: true
