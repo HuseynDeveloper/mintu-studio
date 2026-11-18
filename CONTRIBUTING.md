@@ -4,8 +4,10 @@ Thank you for your interest in contributing to **Mintu Studio**!
 
 ## License Structure
 
-- Core IDE (`src/`, `src-tauri/`, `tests/`, `scripts/`): **GNU GPL-3.0-only** (`LICENSE`).
-- Community Extensions Marketplace (`marketplace/`): **MIT License** (`marketplace/LICENSE-MIT`).
+| Scope | License |
+| --- | --- |
+| Core IDE (`src/`, `src-tauri/`, `tests/`, `scripts/`) | **GNU GPL-3.0-only** (`LICENSE`) |
+| Community Extensions Marketplace (`marketplace/`) | **MIT License** (`marketplace/LICENSE-MIT`) |
 
 By submitting a pull request, you agree that your contributions will be licensed under the applicable license above.
 
@@ -13,9 +15,7 @@ By submitting a pull request, you agree that your contributions will be licensed
 
 ### Prerequisites
 
-- **Node.js** 20+
-- **Rust** (stable toolchain) + **Tauri v2** prerequisites
-- On Windows (MinGW or MSVC): `cargo`, `rustc`, WebView2 Runtime
+Install **Node.js 20+**, **Rust (stable toolchain)**, and **Tauri v2 prerequisites** (WebView2 Runtime on Windows).
 
 ### Run Locally
 
@@ -39,12 +39,9 @@ cd src-tauri && cargo check
 ```
 
 Every PR must pass:
-- TypeScript strict typecheck (`npx tsc --noEmit`)
-- Unit tests (`npm test`), including:
-  - 100% 4-language i18n key parity (`az`, `en`, `tr`, `ru`)
-  - Zero hardcoded hex/rgba colors outside `:root` in `src/styles/studio.css`
-  - Sensitive-file security filter tests
-- Rust backend check (`cargo check`)
+1. TypeScript strict typecheck (`npx tsc --noEmit`)
+2. Unit tests (`npm test`), including 100% 4-language i18n key parity (`az`, `en`, `tr`, `ru`), zero hardcoded hex/rgba colors outside `:root` in `src/styles/studio.css`, and sensitive-file security filter tests
+3. Rust backend check (`cargo check`)
 
 ## Submitting a Community Extension to the Marketplace
 

@@ -23,12 +23,12 @@
 </p>
 
 <p>
-  <a href="#why-mintu-studio">Why Mintu Studio</a> &bull;
-  <a href="#comparison">Comparison</a> &bull;
-  <a href="#complete-feature-overview">Features</a> &bull;
-  <a href="#security-architecture">Security</a> &bull;
-  <a href="#download--installation">Download</a> &bull;
-  <a href="#build-from-source">Build</a> &bull;
+  <a href="#why-mintu-studio">Why Mintu Studio</a> |
+  <a href="#comparison">Comparison</a> |
+  <a href="#complete-feature-overview">Features</a> |
+  <a href="#security-architecture">Security</a> |
+  <a href="#download--installation">Download</a> |
+  <a href="#build-from-source">Build</a> |
   <a href="#licensing">License</a>
 </p>
 
@@ -42,10 +42,12 @@ Modern AI IDEs often weigh 200–500 MB (Electron), lock you into a single vendo
 
 **Mintu Studio** takes a fundamentally different approach:
 
-- **Ultra-Light Native Footprint (~5 MB NSIS Installer)**: Powered by **Tauri v2 + Rust** instead of Electron, using native WebView2 and low RAM.
-- **Zero Vendor Lock-In**: Run **100% offline local GGUF models** (`llama-server`, Ollama, LM Studio) OR bring your own API key across **14 built-in Cloud AI providers** + **unlimited Custom OpenAI-compatible endpoints**.
-- **Security Enforced in Rust, Not Prompts**: Workspace sandboxing, `.env`/private-key blocking, Windows Credential Manager encryption, SSRF protection, and `<untrusted_data>` prompt-injection envelopes are enforced directly in the Rust backend.
-- **All-in-One Engineering Workbench**: Code Editor, Autonomous AI Agent, Multi-Tab Terminal, Git Manager, MCP Client, Postman-Lite API Tester, Read-Only SQLite/CSV Explorer, Live Localhost Preview & Port Monitor, and Community Extension Marketplace — all inside one unified dark desktop app.
+| Pillar | What Makes Mintu Studio Different |
+| --- | --- |
+| **Ultra-Light Native Footprint (~5 MB)** | Powered by **Tauri v2 + Rust** instead of Electron, using native WebView2 and low RAM. |
+| **Zero Vendor Lock-In** | Run **100% offline local GGUF models** (`llama-server`, Ollama, LM Studio) OR bring your own API key across **14 built-in Cloud AI providers** and **unlimited Custom OpenAI-compatible endpoints**. |
+| **Security Enforced in Rust** | Workspace sandboxing, `.env`/private-key blocking, Windows Credential Manager encryption, SSRF protection, and `<untrusted_data>` prompt-injection envelopes are enforced directly in the Rust backend. |
+| **All-in-One Engineering Workbench** | Code Editor, Autonomous AI Agent, Multi-Tab Terminal, Git Manager, MCP Client, Postman-Lite API Tester, Read-Only SQLite/CSV Explorer, Live Localhost Preview & Port Monitor, and Community Extension Marketplace — all inside one unified dark desktop app. |
 
 ---
 
@@ -70,51 +72,85 @@ Modern AI IDEs often weigh 200–500 MB (Electron), lock you into a single vendo
 ## Complete Feature Overview
 
 ### 1. Autonomous AI Coding Agent (`Ask` / `Plan` / `Code` Modes)
-- **Live Active-File & Diagnostic Awareness**: Automatically supplies the open editor file (with exact line numbers) and live syntax/compiler errors so you can simply say *"fix line 14"* or paste a screenshot without manual file attachment.
-- **Surgical Patches & Self-Healing Retries**: Supports targeted `<mintu_replace>` (`SEARCH/REPLACE` and `start_line..end_line` ranges) plus `<mintu_edit>` full file creation/rewrites. If a search hunk misses, the agent automatically self-corrects on the next turn.
-- **Clean Streaming UX**:
-  - Live **file-writing progress pills** (`Writing file: src/app.ts · 42 L [View Code]`) hide raw code walls while streaming.
-  - Finished changes render as **compact collapsible diff cards** with `+added / -removed` stats, 1-click **View Code**, **Apply**, **Apply All**, **Revert**, and **Multi-File Checkpoints**.
-  - **Smart Auto-Scroll**: Never pulls you back down when you scroll up during streaming; shows a floating scroll-to-bottom button instead.
-  - **CSP-Safe Code Copy**: One-click Copy on every AI code and terminal command block.
-- **Antigravity-Style Context Picker (Paperclip Menu)**:
-  - **Files**: Attach active file, upload images/screenshots (drag-and-drop & clipboard paste supported), or search & attach any workspace file.
-  - **Folders**: Attach a folder's directory structure cleanly to context.
-  - **Mentions**: Instant `@problems` (live diagnostics), `@git` (current Git diff), `@terminal` (recent terminal output), `@file`, and `@url https://...`.
-  - **Actions**: 1-click workflows (*Fix All Code Errors*, *Find & Install Missing Package*, *Review Git Changes*, *Generate Tests*, *Optimize File*).
-  - **Browser**: Fetch documentation, GitHub raw files, PyPI, or npm pages directly into chat context via Rust.
-- **Slash Commands & Multi-Session History**: Built-in `/review`, `/security`, `/optimize`, `/docs`, `/tests`, `/explain`, `/fix-all`, custom user slash prompts, chat compaction, Markdown `.md` export, and multi-session chat history.
+
+**Live Active-File & Diagnostic Awareness**
+Automatically supplies the open editor file (with exact line numbers) and live syntax/compiler errors so you can simply say *"fix line 14"* or paste a screenshot without manual file attachment.
+
+**Surgical Patches & Self-Healing Retries**
+Supports targeted `<mintu_replace>` (`SEARCH/REPLACE` and `start_line..end_line` ranges) plus `<mintu_edit>` full file creation/rewrites. If a search hunk misses, the agent automatically self-corrects on the next turn.
+
+**Clean Streaming UX**
+Live file-writing progress pills (`Writing file: src/app.ts | 42 L [View Code]`) hide raw code walls while streaming. Finished changes render as compact collapsible diff cards with `+added / -removed` stats, 1-click **View Code**, **Apply**, **Apply All**, **Revert**, and **Multi-File Checkpoints**. Smart Auto-Scroll never pulls you back down when you scroll up during streaming, and every AI code or terminal block has a CSP-safe Copy button.
+
+**Context Picker (Paperclip Menu)**
+
+| Category | Capability |
+| --- | --- |
+| **Files** | Attach active file, upload images/screenshots (drag-and-drop & clipboard paste), or search & attach any workspace file. |
+| **Folders** | Attach a folder's directory structure cleanly to context. |
+| **Mentions** | Instant `@problems` (live diagnostics), `@git` (current Git diff), `@terminal` (recent terminal output), `@file`, and `@url https://...`. |
+| **Actions** | 1-click workflows: *Fix All Code Errors*, *Find & Install Missing Package*, *Review Git Changes*, *Generate Tests*, *Optimize File*. |
+| **Browser** | Fetch documentation, GitHub raw files, PyPI, or npm pages directly into chat context via Rust. |
+
+**Slash Commands & Multi-Session History**
+Built-in `/review`, `/security`, `/optimize`, `/docs`, `/tests`, `/explain`, `/fix-all`, custom user slash prompts, chat compaction, Markdown `.md` export, and multi-session chat history.
+
+---
 
 ### 2. Local & Cloud AI Engine
-- **Built-in Local GGUF Model Hub**: Curated catalog (coding, reasoning, general models) + custom HuggingFace `.gguf` URL downloader, premium localized download review modal (disk & RAM compatibility indicators), manual launch controls (Context Size, CPU Threads, GPU Layers, Port), plus automatic discovery of running **Ollama** and **LM Studio** servers.
-- **14 Built-in Cloud Providers + Custom Cloud Creator**:
-  - Google Gemini, Anthropic Claude, OpenAI, DeepSeek, Groq, Mistral AI, xAI Grok, OpenRouter, Together AI, Perplexity Sonar, Cerebras, Cohere, Qwen (DashScope), Kimi (Moonshot).
-  - **+ Add Custom Cloud Model**: Add unlimited custom OpenAI-compatible endpoints (Name, Base URL, Model ID, API Key) directly from the Models page and switch from the topbar selector.
+
+**Built-in Local GGUF Model Hub**
+Curated catalog (coding, reasoning, general models) plus custom HuggingFace `.gguf` URL downloader, localized download review modal with disk & RAM compatibility indicators, manual launch controls (Context Size, CPU Threads, GPU Layers, Port), and automatic discovery of running **Ollama** and **LM Studio** servers.
+
+**14 Built-in Cloud Providers + Custom Cloud Creator**
+Google Gemini, Anthropic Claude, OpenAI, DeepSeek, Groq, Mistral AI, xAI Grok, OpenRouter, Together AI, Perplexity Sonar, Cerebras, Cohere, Qwen (DashScope), and Kimi (Moonshot) — plus **+ Add Custom Cloud Model** for unlimited OpenAI-compatible endpoints (Name, Base URL, Model ID, API Key) selectable straight from the topbar.
+
+---
 
 ### 3. Native CodeMirror 6 Editor
-- Multi-tab editing & **Split Editor** side-by-side view.
-- **VS Code-Style Live Diagnostics**: Real-time red/amber squiggly underlines across languages + **live error & warning markers drawn directly on the Minimap** + Workspace Compiler Check (`devtools_check_project`).
-- **Developer Productivity**: Inline AI Edit (`Ctrl+K`), Floating Selection AI Bar (`Explain / Fix / Refactor / Tests / Chat`), Ghost Text inline completion, Symbol Outline (`Ctrl+Shift+O`), Go to Definition & References (`F12`), Quick File & Command Palette (`Ctrl+P` / `Ctrl+Shift+P`), Global Search & Replace, Code Folding, Breadcrumbs, Auto-Close Brackets, Quick Formatter (`Alt+Shift+F`), Local File Timeline, and Side-by-Side File Compare.
 
-### 4. Built-In Engineering Tools (Zero Extra Plugins Needed)
-- **Multi-Tab Integrated Terminal**: Native PowerShell/Shell tabs synced to workspace root, optional line timestamps, and **1-click "Fix with AI"** when a command exits with an error.
-- **Git Manager**: Branch switcher & creation, live status, unified diff viewer, inline Git Blame in the status bar, commit/sync controls, and 1-click **AI Code Review of Git Diff**.
-- **MCP (Model Context Protocol) Page**: Add, manage, connect, and inspect stdio-based external MCP servers with approval-gated tool execution.
-- **API Tester (Postman-Lite)**: Send `GET / POST / PUT / PATCH / DELETE` and GraphQL requests directly through Rust `reqwest` (zero browser CORS restrictions), inspect timing/headers/pretty JSON, save request history, and load Extension API templates.
-- **Live Localhost Preview & Port Monitor**: Inspect active listening local ports, preview web apps live inside Mintu Studio, or terminate stuck dev servers cleanly.
-- **Read-Only Data Explorer**: Inspect local SQLite databases (tables + safe read-only queries), CSV tables, and formatted JSON files.
-- **TODO Scanner & Project Templates**: Scan `TODO / FIXME / HACK / NOTE` markers across the workspace and scaffold starter project structures.
+**Live Diagnostics & Minimap Markers**
+Real-time red/amber squiggly underlines across languages, live error & warning markers drawn directly on the Minimap, and Workspace Compiler Check (`devtools_check_project`).
+
+**Editing & Navigation**
+Multi-tab & Split Editor side-by-side view, Inline AI Edit (`Ctrl+K`), Floating Selection AI Bar (`Explain / Fix / Refactor / Tests / Chat`), Ghost Text inline completion, Symbol Outline (`Ctrl+Shift+O`), Go to Definition & References (`F12`), Quick File & Command Palette (`Ctrl+P` / `Ctrl+Shift+P`), Global Search & Replace, Code Folding, Breadcrumbs, Auto-Close Brackets, Quick Formatter (`Alt+Shift+F`), Local File Timeline, and Side-by-Side File Compare.
+
+---
+
+### 4. Built-In Engineering Tools
+
+| Tool | Description |
+| --- | --- |
+| **Multi-Tab Terminal** | Native PowerShell/Shell tabs synced to workspace root, optional line timestamps, and **1-click "Fix with AI"** when a command fails. |
+| **Git Manager** | Branch switcher & creation, live status, unified diff viewer, inline Git Blame in the status bar, commit/sync controls, and 1-click AI Code Review. |
+| **MCP Servers** | Add, connect, and inspect stdio-based external MCP servers with approval-gated tool execution. |
+| **API Tester (Postman-Lite)** | `GET / POST / PUT / PATCH / DELETE` and GraphQL requests via Rust `reqwest` (zero CORS), timing/headers/pretty JSON, history, and Extension templates. |
+| **Live Preview & Port Monitor** | Inspect active listening local ports, preview localhost apps inside Mintu Studio, or stop stuck dev servers cleanly. |
+| **Read-Only Data Explorer** | Inspect local SQLite databases (tables + read-only queries), CSV tables, and formatted JSON files. |
+| **TODO Scanner & Templates** | Scan `TODO / FIXME / HACK / NOTE` across the project and scaffold starter project templates. |
+
+---
 
 ### 5. GitHub Community Extensions & Auto-Updater
-- **GitHub Marketplace (`marketplace/registry.json`)**: Live sync from GitHub, install/toggle/uninstall extensions, import/export `.json`, and 1-click **Publish to GitHub** (copies JSON and opens a pre-filled Marketplace submission issue).
-- **100% Declarative & Safe**: Extensions contribute code snippets, AI rules, API Tester templates, and terminal scripts — strictly JSON with zero `eval`.
-- **GitHub Releases Auto-Updater**: Automatic startup update check against `latest.json`, SHA-256 verification before launch, and 1-click installer download.
 
-### 6. Windows Integration, Session Control & Rich Settings
-- **Windows "Open with -> Mintu Studio"**: Automatic per-user (`HKCU`, no admin required) registration for 36+ code file extensions plus folder right-click **"Open with Mintu Studio"** — toggleable anytime in **Settings -> General & Appearance**.
-- **Fresh Sessions by Default**: Every launch starts with a clean empty workspace and fresh AI chat session (older chats stay safely in History). Users who prefer restoring their last project or previous AI chat session can enable either toggle in **Settings -> General & Appearance**.
-- **Live-Applied Settings**: UI scale, smooth animations, compact explorer, status bar clock, delete confirmation, font family/size/line-height, cursor style (`line` / `block` / `underline`), tab size, word wrap, auto-save, trailing whitespace/final newline, terminal font/scrollback/timestamps, temperature, max agent steps, custom system prompt, `.minturules` project rules, and Local Permissions.
-- **4 Languages with 100% Key Parity**: **Azerbaijani (`az`)**, **English (`en`)**, **Turkish (`tr`)**, and **Russian (`ru`)** — enforced by automated unit tests.
+**GitHub Marketplace (`marketplace/registry.json`)**
+Live sync from GitHub, install/toggle/uninstall extensions, import/export `.json`, and 1-click **Publish to GitHub** (copies JSON and opens a pre-filled Marketplace submission issue). Extensions are 100% declarative JSON (snippets, AI rules, API templates, terminal scripts) with zero `eval`.
+
+**GitHub Releases Auto-Updater**
+Automatic startup update check against `latest.json`, SHA-256 verification before launch, and 1-click installer download.
+
+---
+
+### 6. Windows Integration, Session Control & Settings
+
+**Windows "Open with -> Mintu Studio"**
+Automatic per-user (`HKCU`, no admin required) registration for 36+ code file extensions plus folder right-click **"Open with Mintu Studio"** — toggleable anytime in **Settings -> General & Appearance**.
+
+**Fresh Sessions by Default**
+Every launch starts with a clean empty workspace and fresh AI chat session (older chats stay safely in History). Users who prefer restoring their last project or previous AI chat session can enable either toggle in **Settings -> General & Appearance**.
+
+**Live Settings & 4 Languages**
+UI scale, smooth animations, compact explorer, status bar clock, delete confirmation, font family/size/line-height, cursor style (`line` / `block` / `underline`), tab size, word wrap, auto-save, trailing whitespace/final newline, terminal font/scrollback/timestamps, temperature, max agent steps, custom system prompt, `.minturules` project rules, Local Permissions, and full 4-language parity across **Azerbaijani (`az`)**, **English (`en`)**, **Turkish (`tr`)**, and **Russian (`ru`)**.
 
 ---
 
@@ -199,9 +235,7 @@ See [SECURITY.md](./SECURITY.md) for vulnerability reporting and full security d
 ## Build From Source
 
 ### Prerequisites
-- **Node.js** 20+
-- **Rust** stable toolchain (`cargo`, `rustc`)
-- **Tauri v2** prerequisites (WebView2 Runtime on Windows)
+**Node.js 20+**, **Rust stable toolchain (`cargo`, `rustc`)**, and **Tauri v2 prerequisites** (WebView2 Runtime on Windows).
 
 ### Develop & Test
 
@@ -233,8 +267,7 @@ node scripts/prepare-release.mjs --repo HuseynDeveloper/mintu-studio --notes "Re
 ## Contributing
 
 Contributions, translations, bug reports, and Community Marketplace extensions are warmly welcome!
-- Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a Pull Request.
-- Submit declarative extensions directly via Mintu Studio (**Extensions -> Create Extension -> Publish to GitHub**) or open a PR editing [marketplace/registry.json](./marketplace/registry.json).
+Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a Pull Request, or submit declarative extensions directly via Mintu Studio (**Extensions -> Create Extension -> Publish to GitHub**) or a PR editing [marketplace/registry.json](./marketplace/registry.json).
 
 ---
 
