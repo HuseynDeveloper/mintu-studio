@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.6.0.schema.json
+
+PackageIdentifier: HuseynDeveloper.MintuStudio
+PackageVersion: 0.1.0
+InstallerType: nullsoft
+InstallModes:
+  - interactive
+  - silent
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/HuseynDeveloper/mintu-studio/releases/download/v0.1.0/Mintu.Studio_0.1.0_x64-setup.exe
+    InstallerSha256: 26B7407BE6FF70F3AF469F31455E873487329616C36A42855BD39DD1A18FC3FC
+    Scope: user
+ManifestType: installer
+ManifestVersion: 1.6.0

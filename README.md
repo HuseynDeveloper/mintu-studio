@@ -222,13 +222,32 @@ See [SECURITY.md](./SECURITY.md) for vulnerability reporting and full security d
 
 ## Download & Installation
 
-### Windows (x64)
-1. Download the latest installer (`Mintu Studio_0.1.0_x64-setup.exe`, ~5 MB) from [GitHub Releases](https://github.com/HuseynDeveloper/mintu-studio/releases).
-2. *(Recommended)* Verify the SHA-256 hash against `latest.json`:
-   ```powershell
-   Get-FileHash ".\Mintu Studio_0.1.0_x64-setup.exe" -Algorithm SHA256
-   ```
-3. Run the installer. Because community builds are not yet EV code-signed, Windows SmartScreen may show a warning on first launch — verify the SHA-256 checksum and click **More info -> Run anyway**.
+### Option 1: Direct Installer (Recommended)
+1. Download the latest setup executable from [GitHub Releases](https://github.com/HuseynDeveloper/mintu-studio/releases/latest):
+   - **`Mintu.Studio_0.1.0_x64-setup.exe`** (~3.1 MB)
+2. Run the installer and follow the prompt.
+
+> [!NOTE]
+> **Windows SmartScreen ("Windows protected your PC") on First Launch:**
+> Because Mintu Studio is an independent open-source project without a costly enterprise EV signing certificate, Microsoft Defender SmartScreen may display a blue warning screen:
+> 
+> `Windows protected your PC - Microsoft Defender SmartScreen prevented an unrecognized app from starting.`
+> 
+> This is standard behavior for all newly released open-source software on Windows. To proceed safely:
+> 1. Click **More info** (under the warning text)
+> 2. Click the **Run anyway** button that appears
+> 
+> You can also verify the file integrity against the official release checksum:
+> ```powershell
+> Get-FileHash ".\Mintu.Studio_0.1.0_x64-setup.exe" -Algorithm SHA256
+> # Official SHA-256: 26b7407be6ff70f3af469f31455e873487329616c36a42855bd39dd1a18fc3fc
+> ```
+
+### Option 2: Windows Package Manager (`winget`)
+Install Mintu Studio directly via Windows terminal:
+```powershell
+winget install HuseynDeveloper.MintuStudio
+```
 
 ---
 

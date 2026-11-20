@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.6.0.schema.json
+
+PackageIdentifier: HuseynDeveloper.MintuStudio
+PackageVersion: 0.1.0
+PackageLocale: en-US
+Publisher: HuseynDeveloper
+PublisherUrl: https://github.com/HuseynDeveloper
+PublisherSupportUrl: https://github.com/HuseynDeveloper/mintu-studio/issues
+PackageName: Mintu Studio
+PackageUrl: https://github.com/HuseynDeveloper/mintu-studio
+License: GPL-3.0
+LicenseUrl: https://github.com/HuseynDeveloper/mintu-studio/blob/main/LICENSE
+Copyright: Copyright 2026 Mintu Contributors. All rights reserved.
+ShortDescription: Standalone, Local-First & Security-Hardened AI Code IDE built with Tauri v2 and Rust.
+Description: Mintu Studio is an ultra-light (~5 MB installer) native AI coding workbench powered by Tauri v2, Rust, and CodeMirror 6. Features include zero telemetry, local GGUF/Ollama support, 14 cloud AI providers, autonomous AI coding agent, workspace sandboxing, and declarative community extension marketplace.
+Moniker: mintu-studio
+Tags:
+  - ai
+  - code-editor
+  - ide
+  - developer-tools
+  - rust
+  - tauri
+  - local-llm
+  - offline-ai
+ManifestType: defaultLocale
+ManifestVersion: 1.6.0
