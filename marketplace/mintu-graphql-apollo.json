@@ -1,0 +1,66 @@
+{
+  "id": "mintu-graphql-apollo",
+  "name": "GraphQL & Apollo Schema Studio",
+  "version": "1.0.0",
+  "author": "Mintu Community",
+  "description": "GraphQL Schema Definition Language (SDL), Apollo Server v4 setups, typed resolvers, GraphQL Code Generator configs, and API test templates.",
+  "category": "API",
+  "enabled": true,
+  "ai_rules": [
+    "Design GraphQL schemas around consumer workflows rather than mirroring database tables directly.",
+    "Use DataLoader batching for nested field resolvers to avoid the N+1 database query antipattern.",
+    "Set depth and complexity limits on GraphQL servers in production to protect against denial of service attacks."
+  ],
+  "snippets": [
+    {
+      "prefix": "gql-type",
+      "label": "GraphQL SDL Schema Definition",
+      "body": "type User {\n  id: ID!\n  email: String!\n  name: String\n  createdAt: String!\n}\n\ninput CreateUserInput {\n  email: String!\n  name: String\n}\n\ntype Query {\n  user(id: ID!): User\n  users(limit: Int = 10, offset: Int = 0): [User!]!\n}\n\ntype Mutation {\n  createUser(input: CreateUserInput!): User!\n}\n",
+      "languages": [
+        "graphql",
+        "gql"
+      ]
+    },
+    {
+      "prefix": "apollo-serv",
+      "label": "Apollo Server v4 Standalone Bootstrap",
+      "body": "import { ApolloServer } from '@apollo/server';\nimport { startStandaloneServer } from '@apollo/server/standalone';\n\nconst typeDefs = `#graphql\n  type Query {\n    health: String!\n  }\n`;\n\nconst resolvers = {\n  Query: {\n    health: () => 'Mintu GraphQL Server is running',\n  },\n};\n\nconst server = new ApolloServer({ typeDefs, resolvers });\nconst { url } = await startStandaloneServer(server, { listen: { port: 4000 } });\nconsole.log(`Server ready at ${url}`);\n",
+      "languages": [
+        "ts",
+        "js"
+      ]
+    },
+    {
+      "prefix": "gql-codegen",
+      "label": "GraphQL Codegen Configuration (codegen.ts)",
+      "body": "import type { CodegenConfig } from '@graphql-codegen/cli';\n\nconst config: CodegenConfig = {\n  schema: 'schema.graphql',\n  documents: ['src/**/*.graphql'],\n  generates: {\n    './src/generated/graphql.ts': {\n      plugins: ['typescript', 'typescript-operations'],\n    },\n  },\n};\n\nexport default config;\n",
+      "languages": [
+        "ts",
+        "js"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "id": "gql-codegen-run",
+      "label": "Run GraphQL Codegen",
+      "command": "npx graphql-codegen"
+    },
+    {
+      "id": "gql-dev",
+      "label": "Start GraphQL Server",
+      "command": "npm run dev"
+    }
+  ],
+  "api_templates": [
+    {
+      "name": "GraphQL Introspection Query",
+      "method": "POST",
+      "url": "http://127.0.0.1:4000/graphql",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\n  \"query\": \"{ __schema { types { name } } }\"\n}"
+    }
+  ]
+}

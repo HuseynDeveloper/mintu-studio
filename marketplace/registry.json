@@ -15,23 +15,42 @@
         "prefix": "rfc",
         "label": "React Functional Component (TSX)",
         "body": "import React from 'react';\n\ninterface Props {\n  title: string;\n}\n\nexport const Component: React.FC<Props> = ({ title }) => {\n  return (\n    <section>\n      <h2>{title}</h2>\n    </section>\n  );\n};\n",
-        "languages": ["ts", "tsx", "js", "jsx"]
+        "languages": [
+          "ts",
+          "tsx",
+          "js",
+          "jsx"
+        ]
       },
       {
         "prefix": "ust",
         "label": "React useState Hook",
         "body": "const [value, setValue] = useState<string>('');",
-        "languages": ["ts", "tsx", "js", "jsx"]
+        "languages": [
+          "ts",
+          "tsx",
+          "js",
+          "jsx"
+        ]
       },
       {
         "prefix": "uef",
         "label": "React useEffect Hook",
         "body": "useEffect(() => {\n  // effect\n  return () => {\n    // cleanup\n  };\n}, []);",
-        "languages": ["ts", "tsx", "js", "jsx"]
+        "languages": [
+          "ts",
+          "tsx",
+          "js",
+          "jsx"
+        ]
       }
     ],
     "commands": [
-      { "id": "react-typecheck", "label": "TypeScript Check (tsc --noEmit)", "command": "npx tsc --noEmit" }
+      {
+        "id": "react-typecheck",
+        "label": "TypeScript Check (tsc --noEmit)",
+        "command": "npx tsc --noEmit"
+      }
     ],
     "api_templates": []
   },
@@ -51,31 +70,47 @@
         "prefix": "fapi",
         "label": "FastAPI Route Handler",
         "body": "@app.get('/items/{item_id}')\nasync def read_item(item_id: int) -> dict:\n    return {'item_id': item_id}\n",
-        "languages": ["py"]
+        "languages": [
+          "py"
+        ]
       },
       {
         "prefix": "pmodel",
         "label": "Pydantic BaseModel",
         "body": "class ItemSchema(BaseModel):\n    id: int\n    name: str\n    active: bool = True\n",
-        "languages": ["py"]
+        "languages": [
+          "py"
+        ]
       },
       {
         "prefix": "pymain",
         "label": "Python Main Guard",
         "body": "def main() -> None:\n    pass\n\nif __name__ == '__main__':\n    main()\n",
-        "languages": ["py"]
+        "languages": [
+          "py"
+        ]
       }
     ],
     "commands": [
-      { "id": "py-pytest", "label": "Run Pytest", "command": "pytest -v" },
-      { "id": "py-venv", "label": "Create Python venv", "command": "python -m venv .venv" }
+      {
+        "id": "py-pytest",
+        "label": "Run Pytest",
+        "command": "pytest -v"
+      },
+      {
+        "id": "py-venv",
+        "label": "Create Python venv",
+        "command": "python -m venv .venv"
+      }
     ],
     "api_templates": [
       {
         "name": "FastAPI Local Healthcheck",
         "method": "GET",
         "url": "http://127.0.0.1:8000/health",
-        "headers": { "Accept": "application/json" },
+        "headers": {
+          "Accept": "application/json"
+        },
         "body": ""
       }
     ]
@@ -96,18 +131,30 @@
         "prefix": "tcmd",
         "label": "Tauri Command Function",
         "body": "#[tauri::command]\npub async fn my_command(input: String) -> Result<String, String> {\n    Ok(input)\n}\n",
-        "languages": ["rs"]
+        "languages": [
+          "rs"
+        ]
       },
       {
         "prefix": "rtest",
         "label": "Rust Unit Test Module",
         "body": "#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn it_works() {\n        assert_eq!(2 + 2, 4);\n    }\n}\n",
-        "languages": ["rs"]
+        "languages": [
+          "rs"
+        ]
       }
     ],
     "commands": [
-      { "id": "rs-check", "label": "Cargo Check", "command": "cargo check" },
-      { "id": "rs-test", "label": "Cargo Test", "command": "cargo test" }
+      {
+        "id": "rs-check",
+        "label": "Cargo Check",
+        "command": "cargo check"
+      },
+      {
+        "id": "rs-test",
+        "label": "Cargo Test",
+        "command": "cargo test"
+      }
     ],
     "api_templates": []
   },
@@ -124,8 +171,16 @@
     ],
     "snippets": [],
     "commands": [
-      { "id": "docker-ps", "label": "Docker Running Containers", "command": "docker ps --format \"table {{.Names}}\\t{{.Status}}\\t{{.Ports}}\"" },
-      { "id": "docker-up", "label": "Docker Compose Up", "command": "docker compose up -d" }
+      {
+        "id": "docker-ps",
+        "label": "Docker Running Containers",
+        "command": "docker ps --format \"table {{.Names}}\\t{{.Status}}\\t{{.Ports}}\""
+      },
+      {
+        "id": "docker-up",
+        "label": "Docker Compose Up",
+        "command": "docker compose up -d"
+      }
     ],
     "api_templates": []
   },
@@ -146,11 +201,20 @@
         "prefix": "tryc",
         "label": "Safe Try / Catch Block",
         "body": "try {\n  // operation\n} catch (error) {\n  console.error('Operation failed:', error);\n}",
-        "languages": ["ts", "tsx", "js", "jsx"]
+        "languages": [
+          "ts",
+          "tsx",
+          "js",
+          "jsx"
+        ]
       }
     ],
     "commands": [
-      { "id": "npm-audit", "label": "NPM Security Audit", "command": "npm audit" }
+      {
+        "id": "npm-audit",
+        "label": "NPM Security Audit",
+        "command": "npm audit"
+      }
     ],
     "api_templates": []
   },
@@ -168,7 +232,12 @@
         "prefix": "fetchj",
         "label": "Async Fetch JSON Helper",
         "body": "const res = await fetch(url, {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify(payload),\n});\nif (!res.ok) throw new Error(`HTTP ${res.status}`);\nconst data = await res.json();",
-        "languages": ["ts", "tsx", "js", "jsx"]
+        "languages": [
+          "ts",
+          "tsx",
+          "js",
+          "jsx"
+        ]
       }
     ],
     "commands": [],
@@ -177,21 +246,27 @@
         "name": "GET Sample Post (JSONPlaceholder)",
         "method": "GET",
         "url": "https://jsonplaceholder.typicode.com/posts/1",
-        "headers": { "Accept": "application/json" },
+        "headers": {
+          "Accept": "application/json"
+        },
         "body": ""
       },
       {
         "name": "POST Echo JSON (HTTPBin)",
         "method": "POST",
         "url": "https://httpbin.org/post",
-        "headers": { "Content-Type": "application/json" },
+        "headers": {
+          "Content-Type": "application/json"
+        },
         "body": "{\n  \"hello\": \"Mintu Studio\",\n  \"ok\": true\n}"
       },
       {
         "name": "Local Ollama Tags Check",
         "method": "GET",
         "url": "http://127.0.0.1:11434/api/tags",
-        "headers": { "Accept": "application/json" },
+        "headers": {
+          "Accept": "application/json"
+        },
         "body": ""
       }
     ]
@@ -209,8 +284,16 @@
     ],
     "snippets": [],
     "commands": [
-      { "id": "git-st", "label": "Git Status Short", "command": "git status -sb" },
-      { "id": "git-lg", "label": "Git Log Graph (15)", "command": "git log --oneline --graph -n 15" }
+      {
+        "id": "git-st",
+        "label": "Git Status Short",
+        "command": "git status -sb"
+      },
+      {
+        "id": "git-lg",
+        "label": "Git Log Graph (15)",
+        "command": "git log --oneline --graph -n 15"
+      }
     ],
     "api_templates": []
   },
@@ -232,33 +315,61 @@
         "prefix": "stful",
         "label": "Flutter StatefulWidget",
         "body": "import 'package:flutter/material.dart';\n\nclass SampleWidget extends StatefulWidget {\n  const SampleWidget({super.key});\n\n  @override\n  State<SampleWidget> createState() => _SampleWidgetState();\n}\n\nclass _SampleWidgetState extends State<SampleWidget> {\n  @override\n  Widget build(BuildContext context) {\n    return const Scaffold(\n      body: Center(child: Text('Hello Mintu')),\n    );\n  }\n}\n",
-        "languages": ["dart"]
+        "languages": [
+          "dart"
+        ]
       },
       {
         "prefix": "stless",
         "label": "Flutter StatelessWidget",
         "body": "import 'package:flutter/material.dart';\n\nclass SimpleCard extends StatelessWidget {\n  final String title;\n  const SimpleCard({super.key, required this.title});\n\n  @override\n  Widget build(BuildContext context) {\n    return Card(\n      child: Padding(\n        padding: const EdgeInsets.all(16.0),\n        child: Text(title),\n      ),\n    );\n  }\n}\n",
-        "languages": ["dart"]
+        "languages": [
+          "dart"
+        ]
       },
       {
         "prefix": "riverpod",
         "label": "Riverpod Notifier Provider",
         "body": "import 'package:flutter_riverpod/flutter_riverpod.dart';\n\nclass CounterNotifier extends Notifier<int> {\n  @override\n  int build() => 0;\n  void increment() => state++;\n}\n\nfinal counterProvider = NotifierProvider<CounterNotifier, int>(CounterNotifier.new);\n",
-        "languages": ["dart"]
+        "languages": [
+          "dart"
+        ]
       },
       {
         "prefix": "diocli",
         "label": "Dio HTTP Client Singleton",
         "body": "import 'package:dio/dio.dart';\n\nfinal dio = Dio(\n  BaseOptions(\n    baseUrl: 'https://api.example.com',\n    connectTimeout: const Duration(seconds: 10),\n    receiveTimeout: const Duration(seconds: 10),\n    headers: {'Accept': 'application/json'},\n  ),\n);\n",
-        "languages": ["dart"]
+        "languages": [
+          "dart"
+        ]
       }
     ],
     "commands": [
-      { "id": "flutter-run", "label": "Flutter Run", "command": "flutter run" },
-      { "id": "flutter-pub-get", "label": "Flutter Pub Get", "command": "flutter pub get" },
-      { "id": "flutter-test", "label": "Flutter Test", "command": "flutter test" },
-      { "id": "dart-analyze", "label": "Dart Analyze", "command": "dart analyze" },
-      { "id": "flutter-build-apk", "label": "Build Release APK", "command": "flutter build apk --release" }
+      {
+        "id": "flutter-run",
+        "label": "Flutter Run",
+        "command": "flutter run"
+      },
+      {
+        "id": "flutter-pub-get",
+        "label": "Flutter Pub Get",
+        "command": "flutter pub get"
+      },
+      {
+        "id": "flutter-test",
+        "label": "Flutter Test",
+        "command": "flutter test"
+      },
+      {
+        "id": "dart-analyze",
+        "label": "Dart Analyze",
+        "command": "dart analyze"
+      },
+      {
+        "id": "flutter-build-apk",
+        "label": "Build Release APK",
+        "command": "flutter build apk --release"
+      }
     ],
     "api_templates": []
   },
@@ -280,32 +391,61 @@
         "prefix": "saction",
         "label": "Server Action with Zod Validation",
         "body": "'use server';\n\nimport { z } from 'zod';\n\nconst InputSchema = z.object({\n  title: z.string().min(1).max(100),\n});\n\nexport async function createItem(formData: FormData) {\n  const parsed = InputSchema.safeParse({\n    title: formData.get('title'),\n  });\n  if (!parsed.success) {\n    return { success: false, errors: parsed.error.flatten() };\n  }\n  return { success: true };\n}\n",
-        "languages": ["ts", "tsx", "js", "jsx"]
+        "languages": [
+          "ts",
+          "tsx",
+          "js",
+          "jsx"
+        ]
       },
       {
         "prefix": "rhandler",
         "label": "Next.js App Router Route Handler (route.ts)",
         "body": "import { NextResponse } from 'next/server';\n\nexport async function GET() {\n  return NextResponse.json({ status: 'healthy', timestamp: Date.now() });\n}\n\nexport async function POST(request: Request) {\n  const body = await request.json();\n  return NextResponse.json({ received: body, ok: true }, { status: 201 });\n}\n",
-        "languages": ["ts", "tsx", "js", "jsx"]
+        "languages": [
+          "ts",
+          "tsx",
+          "js",
+          "jsx"
+        ]
       },
       {
         "prefix": "meta",
         "label": "Next.js Dynamic generateMetadata",
         "body": "import type { Metadata } from 'next';\n\nexport async function generateMetadata(): Promise<Metadata> {\n  return {\n    title: 'Page Title | Mintu',\n    description: 'Clean high-performance web experience.',\n    openGraph: {\n      title: 'Page Title',\n      description: 'Clean high-performance web experience.',\n    },\n  };\n}\n",
-        "languages": ["ts", "tsx", "js", "jsx"]
+        "languages": [
+          "ts",
+          "tsx",
+          "js",
+          "jsx"
+        ]
       }
     ],
     "commands": [
-      { "id": "next-dev", "label": "Next.js Dev Server", "command": "npm run dev" },
-      { "id": "next-build", "label": "Next.js Production Build", "command": "npx next build" },
-      { "id": "next-lint", "label": "Next.js Lint", "command": "npx next lint" }
+      {
+        "id": "next-dev",
+        "label": "Next.js Dev Server",
+        "command": "npm run dev"
+      },
+      {
+        "id": "next-build",
+        "label": "Next.js Production Build",
+        "command": "npx next build"
+      },
+      {
+        "id": "next-lint",
+        "label": "Next.js Lint",
+        "command": "npx next lint"
+      }
     ],
     "api_templates": [
       {
         "name": "Local Next.js Health Check",
         "method": "GET",
         "url": "http://localhost:3000/api/health",
-        "headers": { "Accept": "application/json" },
+        "headers": {
+          "Accept": "application/json"
+        },
         "body": ""
       }
     ]
@@ -328,39 +468,64 @@
         "prefix": "rlspol",
         "label": "Postgres RLS Owner Policy",
         "body": "-- Enable RLS\nALTER TABLE profiles ENABLE ROW LEVEL SECURITY;\n\n-- Create Owner Policy\nCREATE POLICY \"Users can manage their own profile\"\nON profiles FOR ALL\nTO authenticated\nUSING ((select auth.uid()) = user_id)\nWITH CHECK ((select auth.uid()) = user_id);\n",
-        "languages": ["sql"]
+        "languages": [
+          "sql"
+        ]
       },
       {
         "prefix": "pgfunc",
         "label": "Postgres Updated_At Trigger Function",
         "body": "CREATE OR REPLACE FUNCTION set_updated_at()\nRETURNS TRIGGER AS $$\nBEGIN\n  NEW.updated_at = NOW();\n  RETURN NEW;\nEND;\n$$ LANGUAGE plpgsql;\n\nCREATE TRIGGER handle_updated_at\nBEFORE UPDATE ON items\nFOR EACH ROW\nEXECUTE FUNCTION set_updated_at();\n",
-        "languages": ["sql"]
+        "languages": [
+          "sql"
+        ]
       },
       {
         "prefix": "supacli",
         "label": "Supabase Client Initialization",
         "body": "import { createClient } from '@supabase/supabase-js';\n\nconst supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;\nconst supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;\n\nexport const supabase = createClient(supabaseUrl, supabaseAnonKey);\n",
-        "languages": ["ts", "tsx", "js", "jsx"]
+        "languages": [
+          "ts",
+          "tsx",
+          "js",
+          "jsx"
+        ]
       }
     ],
     "commands": [
-      { "id": "supa-status", "label": "Supabase Status", "command": "npx supabase status" },
-      { "id": "supa-start", "label": "Supabase Start Local", "command": "npx supabase start" },
-      { "id": "supa-types", "label": "Gen Supabase Types", "command": "npx supabase gen types typescript --local > types/supabase.ts" }
+      {
+        "id": "supa-status",
+        "label": "Supabase Status",
+        "command": "npx supabase status"
+      },
+      {
+        "id": "supa-start",
+        "label": "Supabase Start Local",
+        "command": "npx supabase start"
+      },
+      {
+        "id": "supa-types",
+        "label": "Gen Supabase Types",
+        "command": "npx supabase gen types typescript --local > types/supabase.ts"
+      }
     ],
     "api_templates": [
       {
         "name": "Supabase Local REST Health",
         "method": "GET",
         "url": "http://127.0.0.1:54321/rest/v1/",
-        "headers": { "Accept": "application/json" },
+        "headers": {
+          "Accept": "application/json"
+        },
         "body": ""
       },
       {
         "name": "Supabase Auth Token Grant",
         "method": "POST",
         "url": "http://127.0.0.1:54321/auth/v1/token?grant_type=password",
-        "headers": { "Content-Type": "application/json" },
+        "headers": {
+          "Content-Type": "application/json"
+        },
         "body": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"secretpassword\"\n}"
       }
     ]
@@ -383,38 +548,58 @@
         "prefix": "llmtool",
         "label": "LLM Function Tool Definition",
         "body": "export const searchTool = {\n  type: 'function',\n  function: {\n    name: 'search_database',\n    description: 'Searches database records matching a query filter.',\n    parameters: {\n      type: 'object',\n      properties: {\n        query: { type: 'string', description: 'Search keywords' },\n        limit: { type: 'number', description: 'Maximum results to return' },\n      },\n      required: ['query'],\n    },\n  },\n};\n",
-        "languages": ["ts", "js"]
+        "languages": [
+          "ts",
+          "js"
+        ]
       },
       {
         "prefix": "zodstruct",
         "label": "Zod Schema for Structured LLM Outputs",
         "body": "import { z } from 'zod';\n\nexport const AgentResponseSchema = z.object({\n  thought: z.string().describe('Step-by-step reasoning'),\n  action: z.enum(['search', 'execute', 'finish']),\n  parameters: z.record(z.any()),\n  finalAnswer: z.string().optional(),\n});\n\nexport type AgentResponse = z.infer<typeof AgentResponseSchema>;\n",
-        "languages": ["ts", "js"]
+        "languages": [
+          "ts",
+          "js"
+        ]
       },
       {
         "prefix": "pytool",
         "label": "Python Pydantic Agent Tool",
         "body": "from pydantic import BaseModel, Field\nfrom typing import Optional\n\nclass WeatherInput(BaseModel):\n    city: str = Field(description='City name, e.g. Baku, Paris')\n    units: Optional[str] = Field(default='celsius', description='Temperature units')\n\ndef get_weather(input_data: WeatherInput) -> dict:\n    '''Retrieves real-time weather observations for a city.'''\n    return {'city': input_data.city, 'temperature': 21.5, 'units': input_data.units}\n",
-        "languages": ["py"]
+        "languages": [
+          "py"
+        ]
       }
     ],
     "commands": [
-      { "id": "ollama-list", "label": "Ollama List Models", "command": "ollama list" },
-      { "id": "ollama-pull", "label": "Ollama Pull Qwen 2.5 Coder", "command": "ollama pull qwen2.5-coder:7b" }
+      {
+        "id": "ollama-list",
+        "label": "Ollama List Models",
+        "command": "ollama list"
+      },
+      {
+        "id": "ollama-pull",
+        "label": "Ollama Pull Qwen 2.5 Coder",
+        "command": "ollama pull qwen2.5-coder:7b"
+      }
     ],
     "api_templates": [
       {
         "name": "Ollama Local Chat Completion",
         "method": "POST",
         "url": "http://127.0.0.1:11434/api/chat",
-        "headers": { "Content-Type": "application/json" },
+        "headers": {
+          "Content-Type": "application/json"
+        },
         "body": "{\n  \"model\": \"qwen2.5-coder:7b\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Write a quicksort in Rust\"\n    }\n  ],\n  \"stream\": false\n}"
       },
       {
         "name": "OpenAI-Compatible Local Endpoint (llama-server)",
         "method": "POST",
         "url": "http://127.0.0.1:8080/v1/chat/completions",
-        "headers": { "Content-Type": "application/json" },
+        "headers": {
+          "Content-Type": "application/json"
+        },
         "body": "{\n  \"model\": \"default\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello from Mintu Studio!\"\n    }\n  ]\n}"
       }
     ]
@@ -437,25 +622,427 @@
         "prefix": "gloop",
         "label": "HTML5 Canvas 60 FPS Game Loop",
         "body": "export class GameEngine {\n  private lastTime = performance.now();\n  private animFrameId: number | null = null;\n  private isRunning = false;\n\n  start(): void {\n    this.isRunning = true;\n    this.lastTime = performance.now();\n    this.loop(this.lastTime);\n  }\n\n  private loop = (time: number): void => {\n    if (!this.isRunning) return;\n    const dt = Math.min(0.1, (time - this.lastTime) / 1000);\n    this.lastTime = time;\n\n    this.update(dt);\n    this.render();\n\n    this.animFrameId = requestAnimationFrame(this.loop);\n  };\n\n  update(dt: number): void {\n    // Physics & entity update logic\n  }\n\n  render(): void {\n    // Canvas drawing logic\n  }\n\n  stop(): void {\n    this.isRunning = false;\n    if (this.animFrameId) cancelAnimationFrame(this.animFrameId);\n  }\n}\n",
-        "languages": ["ts", "js"]
+        "languages": [
+          "ts",
+          "js"
+        ]
       },
       {
         "prefix": "aabb",
         "label": "AABB 2D Collision Detection",
         "body": "export interface Rect {\n  x: number;\n  y: number;\n  w: number;\n  h: number;\n}\n\nexport function checkAABB(a: Rect, b: Rect): boolean {\n  return (\n    a.x < b.x + b.w &&\n    a.x + a.w > b.x &&\n    a.y < b.y + b.h &&\n    a.y + a.h > b.y\n  );\n}\n",
-        "languages": ["ts", "js"]
+        "languages": [
+          "ts",
+          "js"
+        ]
       },
       {
         "prefix": "spritesheet",
         "label": "Sprite Sheet Frame Drawing Helper",
         "body": "export function drawSpriteFrame(\n  ctx: CanvasRenderingContext2D,\n  image: CanvasImageSource,\n  frameIndex: number,\n  frameWidth: number,\n  frameHeight: number,\n  destX: number,\n  destY: number,\n  cols: number\n): void {\n  const sx = (frameIndex % cols) * frameWidth;\n  const sy = Math.floor(frameIndex / cols) * frameHeight;\n  ctx.drawImage(image, sx, sy, frameWidth, frameHeight, destX, destY, frameWidth, frameHeight);\n}\n",
-        "languages": ["ts", "js"]
+        "languages": [
+          "ts",
+          "js"
+        ]
       }
     ],
     "commands": [
-      { "id": "vite-dev", "label": "Game Dev Server (Vite)", "command": "npm run dev" },
-      { "id": "build-preview", "label": "Build & Preview Game", "command": "npm run build && npm run preview" }
+      {
+        "id": "vite-dev",
+        "label": "Game Dev Server (Vite)",
+        "command": "npm run dev"
+      },
+      {
+        "id": "build-preview",
+        "label": "Build & Preview Game",
+        "command": "npm run build && npm run preview"
+      }
     ],
     "api_templates": []
+  },
+  {
+    "id": "mintu-golang-cloud",
+    "name": "Go & Cloud-Native Microservices",
+    "version": "1.0.0",
+    "author": "Mintu Community",
+    "description": "Idiomatic Go microservice templates, Gin/Echo HTTP handlers, sync.WaitGroup concurrency patterns, context cancellation, and Go CLI tools.",
+    "category": "Backend",
+    "enabled": true,
+    "ai_rules": [
+      "Always propagate context.Context as the first argument in long-running or network functions for timeout and cancellation control.",
+      "Handle errors explicitly and avoid ignoring returned error values (_); wrap contextual information with fmt.Errorf.",
+      "Prevent goroutine leaks by ensuring channels are closed or receivers terminate when context is canceled."
+    ],
+    "snippets": [
+      {
+        "prefix": "gofast",
+        "label": "Go Net/HTTP REST Handler",
+        "body": "package main\n\nimport (\n\t\"encoding/json\"\n\t\"net/http\"\n)\n\ntype Response struct {\n\tStatus  string `json:\"status\"`\n\tMessage string `json:\"message\"`\n}\n\nfunc HealthHandler(w http.ResponseWriter, r *http.Request) {\n\tw.Header().Set(\"Content-Type\", \"application/json\")\n\tjson.NewEncoder(w).Encode(Response{Status: \"ok\", Message: \"healthy\"})\n}\n",
+        "languages": [
+          "go"
+        ]
+      },
+      {
+        "prefix": "goroutine",
+        "label": "Go Worker Pool with WaitGroup and Context",
+        "body": "package main\n\nimport (\n\t\"context\"\n\t\"sync\"\n)\n\nfunc RunWorkerPool(ctx context.Context, jobs <-chan int, wg *sync.WaitGroup) {\n\tdefer wg.Done()\n\tfor {\n\t\tselect {\n\t\tcase <-ctx.Done():\n\t\t\treturn\n\t\tcase job, ok := <-jobs:\n\t\t\tif !ok {\n\t\t\t\treturn\n\t\t\t}\n\t\t\t_ = job // Process job logic\n\t\t}\n\t}\n}\n",
+        "languages": [
+          "go"
+        ]
+      },
+      {
+        "prefix": "gorm",
+        "label": "Go GORM Database Model",
+        "body": "package main\n\nimport (\n\t\"time\"\n\t\"gorm.io/gorm\"\n)\n\ntype User struct {\n\tID        uint           `gorm:\"primaryKey\" json:\"id\"`\n\tEmail     string         `gorm:\"uniqueIndex;not null\" json:\"email\"`\n\tCreatedAt time.Time      `json:\"created_at\"`\n\tDeletedAt gorm.DeletedAt `gorm:\"index\" json:\"-\"`\n}\n",
+        "languages": [
+          "go"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "id": "go-run",
+        "label": "Go Run",
+        "command": "go run ."
+      },
+      {
+        "id": "go-test",
+        "label": "Go Test All",
+        "command": "go test -v ./..."
+      },
+      {
+        "id": "go-tidy",
+        "label": "Go Mod Tidy",
+        "command": "go mod tidy"
+      },
+      {
+        "id": "go-build",
+        "label": "Go Build Binary",
+        "command": "go build -v -o app.exe ."
+      }
+    ],
+    "api_templates": [
+      {
+        "name": "Go Service Healthcheck",
+        "method": "GET",
+        "url": "http://127.0.0.1:8080/health",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body": ""
+      }
+    ]
+  },
+  {
+    "id": "mintu-cpp-modern",
+    "name": "Modern C++ & Algorithms Kit",
+    "version": "1.0.0",
+    "author": "Mintu Community",
+    "description": "C++20 idioms, RAII smart pointers, competitive programming fast I/O, Disjoint Set Union (DSU), and CMake/GCC build commands.",
+    "category": "Systems",
+    "enabled": true,
+    "ai_rules": [
+      "Adhere strictly to RAII: avoid manual delete calls and prefer std::unique_ptr and std::make_unique for dynamic memory.",
+      "Pass read-only non-trivial types by const reference (const T&) and primitive scalars by value.",
+      "Enable compiler warnings (-Wall -Wextra -Wpedantic) and treat undefined behavior with extreme caution."
+    ],
+    "snippets": [
+      {
+        "prefix": "fastio",
+        "label": "Competitive Programming Fast I/O Template",
+        "body": "#include <iostream>\n#include <vector>\n#include <string>\n\nusing namespace std;\n\nvoid solve() {\n    // Solution logic\n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n    int t = 1;\n    if (cin >> t) {\n        while (t--) solve();\n    }\n    return 0;\n}\n",
+        "languages": [
+          "cpp",
+          "c",
+          "cc",
+          "cxx"
+        ]
+      },
+      {
+        "prefix": "smartptr",
+        "label": "Modern C++ RAII Smart Pointer Factory",
+        "body": "#include <memory>\n#include <iostream>\n\nclass Resource {\npublic:\n    void execute() const { std::cout << \"Executing...\\n\"; }\n};\n\nstd::unique_ptr<Resource> createResource() {\n    return std::make_unique<Resource>();\n}\n",
+        "languages": [
+          "cpp",
+          "cc",
+          "cxx"
+        ]
+      },
+      {
+        "prefix": "dsu",
+        "label": "Disjoint Set Union (DSU / Union-Find)",
+        "body": "#include <vector>\n#include <numeric>\n\nclass DSU {\n    std::vector<int> parent, rank;\npublic:\n    explicit DSU(int n) : parent(n), rank(n, 0) {\n        std::iota(parent.begin(), parent.end(), 0);\n    }\n    int find(int i) {\n        if (parent[i] == i) return i;\n        return parent[i] = find(parent[i]);\n    }\n    bool unite(int i, int j) {\n        int rootI = find(i), rootJ = find(j);\n        if (rootI == rootJ) return false;\n        if (rank[rootI] < rank[rootJ]) parent[rootI] = rootJ;\n        else if (rank[rootI] > rank[rootJ]) parent[rootI] = rootJ;\n        else { parent[rootJ] = rootI; rank[rootI]++; }\n        return true;\n    }\n};\n",
+        "languages": [
+          "cpp",
+          "cc",
+          "cxx"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "id": "cpp-build-run",
+        "label": "Build & Run (G++)",
+        "command": "g++ -O3 -std=c++20 main.cpp -o main.exe && .\\main.exe"
+      },
+      {
+        "id": "cmake-build",
+        "label": "CMake Configure & Build",
+        "command": "cmake -B build && cmake --build build --config Release"
+      }
+    ],
+    "api_templates": []
+  },
+  {
+    "id": "mintu-vue-nuxt",
+    "name": "Vue 3 & Nuxt Fullstack Kit",
+    "version": "1.0.0",
+    "author": "Mintu Community",
+    "description": "Vue 3 Composition API with <script setup lang=\"ts\">, Pinia stores, VueUse helpers, Nuxt 3 server API routes, and Nuxi CLI commands.",
+    "category": "Frontend",
+    "enabled": true,
+    "ai_rules": [
+      "Use <script setup lang=\"ts\"> with defineProps and defineEmits for clean type-safe Vue 3 SFCs.",
+      "Store global state in Pinia stores with explicit state and actions; avoid modifying reactive state outside store actions.",
+      "In Nuxt 3, utilize useFetch and useAsyncData with key identifiers to prevent duplicate client-side requests after SSR."
+    ],
+    "snippets": [
+      {
+        "prefix": "vbase",
+        "label": "Vue 3 SFC <script setup lang=\"ts\">",
+        "body": "<script setup lang=\"ts\">\nimport { ref, computed } from 'vue';\n\ninterface Props {\n  title: string;\n  count?: number;\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  count: 0,\n});\n\nconst emit = defineEmits<{\n  (e: 'update', value: number): void;\n}>();\n\nconst localCount = ref(props.count);\nconst doubleCount = computed(() => localCount.value * 2);\n</script>\n\n<template>\n  <div class=\"card\">\n    <h2>{{ title }}</h2>\n    <p>Double: {{ doubleCount }}</p>\n    <button @click=\"emit('update', localCount++)\">Increment</button>\n  </div>\n</template>\n",
+        "languages": [
+          "vue",
+          "html",
+          "ts"
+        ]
+      },
+      {
+        "prefix": "pinia",
+        "label": "Pinia TypeScript Store",
+        "body": "import { defineStore } from 'pinia';\nimport { ref, computed } from 'vue';\n\nexport const useAppStore = defineStore('app', () => {\n  const theme = ref<'light' | 'dark'>('dark');\n  const isDark = computed(() => theme.value === 'dark');\n\n  function toggleTheme(): void {\n    theme.value = theme.value === 'dark' ? 'light' : 'dark';\n  }\n\n  return { theme, isDark, toggleTheme };\n});\n",
+        "languages": [
+          "ts",
+          "js"
+        ]
+      },
+      {
+        "prefix": "nroute",
+        "label": "Nuxt 3 Server API Event Handler",
+        "body": "import { defineEventHandler, readBody } from 'h3';\n\nexport default defineEventHandler(async (event) => {\n  const method = getMethod(event);\n  if (method === 'POST') {\n    const body = await readBody(event);\n    return { success: true, received: body };\n  }\n  return { success: true, timestamp: Date.now() };\n});\n",
+        "languages": [
+          "ts",
+          "js"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "id": "nuxt-dev",
+        "label": "Nuxt Dev Server",
+        "command": "npx nuxi dev"
+      },
+      {
+        "id": "nuxt-build",
+        "label": "Nuxt Build",
+        "command": "npx nuxi build"
+      },
+      {
+        "id": "vue-typecheck",
+        "label": "Vue TypeScript Check",
+        "command": "npx vue-tsc --noEmit"
+      }
+    ],
+    "api_templates": []
+  },
+  {
+    "id": "mintu-cloud-k8s",
+    "name": "Kubernetes & Cloud Infrastructure",
+    "version": "1.0.0",
+    "author": "Mintu Community",
+    "description": "Production Kubernetes Deployment, Service, and Ingress manifests, HPA autoscaling, Terraform cloud resources, and kubectl helper commands.",
+    "category": "DevOps",
+    "enabled": true,
+    "ai_rules": [
+      "Always declare explicit CPU and memory resource requests and limits for all Kubernetes containers.",
+      "Implement livenessProbe and readinessProbe on all long-running service pods to ensure zero-downtime rolling updates.",
+      "Enforce non-root execution (securityContext.runAsNonRoot: true) and read-only root filesystems where applicable."
+    ],
+    "snippets": [
+      {
+        "prefix": "k8s-deploy",
+        "label": "Kubernetes Production Deployment Manifest",
+        "body": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: app-deployment\n  labels:\n    app: web-service\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: web-service\n  template:\n    metadata:\n      labels:\n        app: web-service\n    spec:\n      containers:\n      - name: app\n        image: registry.example.com/app:v1.0.0\n        ports:\n        - containerPort: 8080\n        resources:\n          requests:\n            memory: \"128Mi\"\n            cpu: \"100m\"\n          limits:\n            memory: \"512Mi\"\n            cpu: \"500m\"\n        readinessProbe:\n          httpGet:\n            path: /health\n            port: 8080\n          initialDelaySeconds: 5\n          periodSeconds: 10\n",
+        "languages": [
+          "yaml",
+          "yml"
+        ]
+      },
+      {
+        "prefix": "k8s-svc",
+        "label": "Kubernetes ClusterIP / NodePort Service",
+        "body": "apiVersion: v1\nkind: Service\nmetadata:\n  name: app-service\nspec:\n  type: ClusterIP\n  selector:\n    app: web-service\n  ports:\n  - port: 80\n    targetPort: 8080\n    protocol: TCP\n",
+        "languages": [
+          "yaml",
+          "yml"
+        ]
+      },
+      {
+        "prefix": "tf-s3",
+        "label": "Terraform AWS S3 Bucket with Encryption",
+        "body": "resource \"aws_s3_bucket\" \"app_storage\" {\n  bucket = \"my-app-storage-bucket-2026\"\n  force_destroy = false\n\n  tags = {\n    Environment = \"production\"\n    ManagedBy   = \"terraform\"\n  }\n}\n\nresource \"aws_s3_bucket_server_side_encryption_configuration\" \"encryption\" {\n  bucket = aws_s3_bucket.app_storage.id\n  rule {\n    apply_server_side_encryption_by_default {\n      sse_algorithm = \"AES256\"\n    }\n  }\n}\n",
+        "languages": [
+          "hcl",
+          "tf"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "id": "k8s-pods",
+        "label": "Kubectl Get Pods",
+        "command": "kubectl get pods -A"
+      },
+      {
+        "id": "k8s-logs",
+        "label": "Kubectl Follow Logs",
+        "command": "kubectl logs -f --tail=100 deployment/app-deployment"
+      },
+      {
+        "id": "helm-lint",
+        "label": "Helm Chart Lint",
+        "command": "helm lint ."
+      },
+      {
+        "id": "tf-plan",
+        "label": "Terraform Plan",
+        "command": "terraform plan"
+      }
+    ],
+    "api_templates": []
+  },
+  {
+    "id": "mintu-data-science",
+    "name": "Data Science & Fast Analytics",
+    "version": "1.0.0",
+    "author": "Mintu Community",
+    "description": "High-performance data pipelines with Polars, DuckDB in-process analytics, Pandas EDA transformations, and Python code quality commands.",
+    "category": "Data Science",
+    "enabled": true,
+    "ai_rules": [
+      "Prefer Polars LazyFrame (scan_csv, scan_parquet) over eager loading for large datasets to optimize memory and execution plans.",
+      "Validate input datasets against schema definitions and handle NaN/Null values explicitly before model training or aggregation.",
+      "Use DuckDB for ad-hoc analytical SQL queries directly against Parquet or CSV files without spinning up an external database."
+    ],
+    "snippets": [
+      {
+        "prefix": "polar-df",
+        "label": "Polars LazyFrame Aggregation Pipeline",
+        "body": "import polars as pl\n\ndef process_analytics(filepath: str) -> pl.DataFrame:\n    q = (\n        pl.scan_parquet(filepath)\n        .filter(pl.col(\"status\") == \"completed\")\n        .group_by(\"category\")\n        .agg([\n            pl.col(\"amount\").sum().alias(\"total_revenue\"),\n            pl.col(\"user_id\").n_unique().alias(\"unique_customers\"),\n            pl.col(\"amount\").mean().alias(\"avg_order_value\"),\n        ])\n        .sort(\"total_revenue\", descending=True)\n    )\n    return q.collect()\n",
+        "languages": [
+          "py"
+        ]
+      },
+      {
+        "prefix": "duck-sql",
+        "label": "DuckDB SQL Query Over Parquet Files",
+        "body": "import duckdb\n\ndef query_dataset(parquet_path: str):\n    con = duckdb.connect(database=\":memory:\")\n    query = f\"\"\"\n        SELECT category, COUNT(*) as count, AVG(price) as avg_price\n        FROM '{parquet_path}'\n        GROUP BY category\n        ORDER BY count DESC\n        LIMIT 20\n    \"\"\"\n    return con.execute(query).df()\n",
+        "languages": [
+          "py"
+        ]
+      },
+      {
+        "prefix": "pandas-clean",
+        "label": "Pandas Missing Value Imputation and Summary",
+        "body": "import pandas as pd\n\ndef clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:\n    cleaned = df.copy()\n    numeric_cols = cleaned.select_dtypes(include=['number']).columns\n    cleaned[numeric_cols] = cleaned[numeric_cols].fillna(cleaned[numeric_cols].median())\n    categorical_cols = cleaned.select_dtypes(include=['object', 'category']).columns\n    cleaned[categorical_cols] = cleaned[categorical_cols].fillna('UNKNOWN')\n    return cleaned\n",
+        "languages": [
+          "py"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "id": "python-pytest",
+        "label": "Run Pytest",
+        "command": "python -m pytest tests/ -v"
+      },
+      {
+        "id": "ruff-check",
+        "label": "Ruff Lint Check",
+        "command": "ruff check ."
+      },
+      {
+        "id": "black-format",
+        "label": "Black Code Formatter",
+        "command": "black ."
+      }
+    ],
+    "api_templates": []
+  },
+  {
+    "id": "mintu-graphql-apollo",
+    "name": "GraphQL & Apollo Schema Studio",
+    "version": "1.0.0",
+    "author": "Mintu Community",
+    "description": "GraphQL Schema Definition Language (SDL), Apollo Server v4 setups, typed resolvers, GraphQL Code Generator configs, and API test templates.",
+    "category": "API",
+    "enabled": true,
+    "ai_rules": [
+      "Design GraphQL schemas around consumer workflows rather than mirroring database tables directly.",
+      "Use DataLoader batching for nested field resolvers to avoid the N+1 database query antipattern.",
+      "Set depth and complexity limits on GraphQL servers in production to protect against denial of service attacks."
+    ],
+    "snippets": [
+      {
+        "prefix": "gql-type",
+        "label": "GraphQL SDL Schema Definition",
+        "body": "type User {\n  id: ID!\n  email: String!\n  name: String\n  createdAt: String!\n}\n\ninput CreateUserInput {\n  email: String!\n  name: String\n}\n\ntype Query {\n  user(id: ID!): User\n  users(limit: Int = 10, offset: Int = 0): [User!]!\n}\n\ntype Mutation {\n  createUser(input: CreateUserInput!): User!\n}\n",
+        "languages": [
+          "graphql",
+          "gql"
+        ]
+      },
+      {
+        "prefix": "apollo-serv",
+        "label": "Apollo Server v4 Standalone Bootstrap",
+        "body": "import { ApolloServer } from '@apollo/server';\nimport { startStandaloneServer } from '@apollo/server/standalone';\n\nconst typeDefs = `#graphql\n  type Query {\n    health: String!\n  }\n`;\n\nconst resolvers = {\n  Query: {\n    health: () => 'Mintu GraphQL Server is running',\n  },\n};\n\nconst server = new ApolloServer({ typeDefs, resolvers });\nconst { url } = await startStandaloneServer(server, { listen: { port: 4000 } });\nconsole.log(`Server ready at ${url}`);\n",
+        "languages": [
+          "ts",
+          "js"
+        ]
+      },
+      {
+        "prefix": "gql-codegen",
+        "label": "GraphQL Codegen Configuration (codegen.ts)",
+        "body": "import type { CodegenConfig } from '@graphql-codegen/cli';\n\nconst config: CodegenConfig = {\n  schema: 'schema.graphql',\n  documents: ['src/**/*.graphql'],\n  generates: {\n    './src/generated/graphql.ts': {\n      plugins: ['typescript', 'typescript-operations'],\n    },\n  },\n};\n\nexport default config;\n",
+        "languages": [
+          "ts",
+          "js"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "id": "gql-codegen-run",
+        "label": "Run GraphQL Codegen",
+        "command": "npx graphql-codegen"
+      },
+      {
+        "id": "gql-dev",
+        "label": "Start GraphQL Server",
+        "command": "npm run dev"
+      }
+    ],
+    "api_templates": [
+      {
+        "name": "GraphQL Introspection Query",
+        "method": "POST",
+        "url": "http://127.0.0.1:4000/graphql",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"query\": \"{ __schema { types { name } } }\"\n}"
+      }
+    ]
   }
 ]

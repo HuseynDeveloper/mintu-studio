@@ -1,0 +1,62 @@
+{
+  "id": "mintu-vue-nuxt",
+  "name": "Vue 3 & Nuxt Fullstack Kit",
+  "version": "1.0.0",
+  "author": "Mintu Community",
+  "description": "Vue 3 Composition API with <script setup lang=\"ts\">, Pinia stores, VueUse helpers, Nuxt 3 server API routes, and Nuxi CLI commands.",
+  "category": "Frontend",
+  "enabled": true,
+  "ai_rules": [
+    "Use <script setup lang=\"ts\"> with defineProps and defineEmits for clean type-safe Vue 3 SFCs.",
+    "Store global state in Pinia stores with explicit state and actions; avoid modifying reactive state outside store actions.",
+    "In Nuxt 3, utilize useFetch and useAsyncData with key identifiers to prevent duplicate client-side requests after SSR."
+  ],
+  "snippets": [
+    {
+      "prefix": "vbase",
+      "label": "Vue 3 SFC <script setup lang=\"ts\">",
+      "body": "<script setup lang=\"ts\">\nimport { ref, computed } from 'vue';\n\ninterface Props {\n  title: string;\n  count?: number;\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  count: 0,\n});\n\nconst emit = defineEmits<{\n  (e: 'update', value: number): void;\n}>();\n\nconst localCount = ref(props.count);\nconst doubleCount = computed(() => localCount.value * 2);\n</script>\n\n<template>\n  <div class=\"card\">\n    <h2>{{ title }}</h2>\n    <p>Double: {{ doubleCount }}</p>\n    <button @click=\"emit('update', localCount++)\">Increment</button>\n  </div>\n</template>\n",
+      "languages": [
+        "vue",
+        "html",
+        "ts"
+      ]
+    },
+    {
+      "prefix": "pinia",
+      "label": "Pinia TypeScript Store",
+      "body": "import { defineStore } from 'pinia';\nimport { ref, computed } from 'vue';\n\nexport const useAppStore = defineStore('app', () => {\n  const theme = ref<'light' | 'dark'>('dark');\n  const isDark = computed(() => theme.value === 'dark');\n\n  function toggleTheme(): void {\n    theme.value = theme.value === 'dark' ? 'light' : 'dark';\n  }\n\n  return { theme, isDark, toggleTheme };\n});\n",
+      "languages": [
+        "ts",
+        "js"
+      ]
+    },
+    {
+      "prefix": "nroute",
+      "label": "Nuxt 3 Server API Event Handler",
+      "body": "import { defineEventHandler, readBody } from 'h3';\n\nexport default defineEventHandler(async (event) => {\n  const method = getMethod(event);\n  if (method === 'POST') {\n    const body = await readBody(event);\n    return { success: true, received: body };\n  }\n  return { success: true, timestamp: Date.now() };\n});\n",
+      "languages": [
+        "ts",
+        "js"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "id": "nuxt-dev",
+      "label": "Nuxt Dev Server",
+      "command": "npx nuxi dev"
+    },
+    {
+      "id": "nuxt-build",
+      "label": "Nuxt Build",
+      "command": "npx nuxi build"
+    },
+    {
+      "id": "vue-typecheck",
+      "label": "Vue TypeScript Check",
+      "command": "npx vue-tsc --noEmit"
+    }
+  ],
+  "api_templates": []
+}

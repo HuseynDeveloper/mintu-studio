@@ -1,0 +1,58 @@
+{
+  "id": "mintu-data-science",
+  "name": "Data Science & Fast Analytics",
+  "version": "1.0.0",
+  "author": "Mintu Community",
+  "description": "High-performance data pipelines with Polars, DuckDB in-process analytics, Pandas EDA transformations, and Python code quality commands.",
+  "category": "Data Science",
+  "enabled": true,
+  "ai_rules": [
+    "Prefer Polars LazyFrame (scan_csv, scan_parquet) over eager loading for large datasets to optimize memory and execution plans.",
+    "Validate input datasets against schema definitions and handle NaN/Null values explicitly before model training or aggregation.",
+    "Use DuckDB for ad-hoc analytical SQL queries directly against Parquet or CSV files without spinning up an external database."
+  ],
+  "snippets": [
+    {
+      "prefix": "polar-df",
+      "label": "Polars LazyFrame Aggregation Pipeline",
+      "body": "import polars as pl\n\ndef process_analytics(filepath: str) -> pl.DataFrame:\n    q = (\n        pl.scan_parquet(filepath)\n        .filter(pl.col(\"status\") == \"completed\")\n        .group_by(\"category\")\n        .agg([\n            pl.col(\"amount\").sum().alias(\"total_revenue\"),\n            pl.col(\"user_id\").n_unique().alias(\"unique_customers\"),\n            pl.col(\"amount\").mean().alias(\"avg_order_value\"),\n        ])\n        .sort(\"total_revenue\", descending=True)\n    )\n    return q.collect()\n",
+      "languages": [
+        "py"
+      ]
+    },
+    {
+      "prefix": "duck-sql",
+      "label": "DuckDB SQL Query Over Parquet Files",
+      "body": "import duckdb\n\ndef query_dataset(parquet_path: str):\n    con = duckdb.connect(database=\":memory:\")\n    query = f\"\"\"\n        SELECT category, COUNT(*) as count, AVG(price) as avg_price\n        FROM '{parquet_path}'\n        GROUP BY category\n        ORDER BY count DESC\n        LIMIT 20\n    \"\"\"\n    return con.execute(query).df()\n",
+      "languages": [
+        "py"
+      ]
+    },
+    {
+      "prefix": "pandas-clean",
+      "label": "Pandas Missing Value Imputation and Summary",
+      "body": "import pandas as pd\n\ndef clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:\n    cleaned = df.copy()\n    numeric_cols = cleaned.select_dtypes(include=['number']).columns\n    cleaned[numeric_cols] = cleaned[numeric_cols].fillna(cleaned[numeric_cols].median())\n    categorical_cols = cleaned.select_dtypes(include=['object', 'category']).columns\n    cleaned[categorical_cols] = cleaned[categorical_cols].fillna('UNKNOWN')\n    return cleaned\n",
+      "languages": [
+        "py"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "id": "python-pytest",
+      "label": "Run Pytest",
+      "command": "python -m pytest tests/ -v"
+    },
+    {
+      "id": "ruff-check",
+      "label": "Ruff Lint Check",
+      "command": "ruff check ."
+    },
+    {
+      "id": "black-format",
+      "label": "Black Code Formatter",
+      "command": "black ."
+    }
+  ],
+  "api_templates": []
+}

@@ -1,0 +1,73 @@
+{
+  "id": "mintu-golang-cloud",
+  "name": "Go & Cloud-Native Microservices",
+  "version": "1.0.0",
+  "author": "Mintu Community",
+  "description": "Idiomatic Go microservice templates, Gin/Echo HTTP handlers, sync.WaitGroup concurrency patterns, context cancellation, and Go CLI tools.",
+  "category": "Backend",
+  "enabled": true,
+  "ai_rules": [
+    "Always propagate context.Context as the first argument in long-running or network functions for timeout and cancellation control.",
+    "Handle errors explicitly and avoid ignoring returned error values (_); wrap contextual information with fmt.Errorf.",
+    "Prevent goroutine leaks by ensuring channels are closed or receivers terminate when context is canceled."
+  ],
+  "snippets": [
+    {
+      "prefix": "gofast",
+      "label": "Go Net/HTTP REST Handler",
+      "body": "package main\n\nimport (\n\t\"encoding/json\"\n\t\"net/http\"\n)\n\ntype Response struct {\n\tStatus  string `json:\"status\"`\n\tMessage string `json:\"message\"`\n}\n\nfunc HealthHandler(w http.ResponseWriter, r *http.Request) {\n\tw.Header().Set(\"Content-Type\", \"application/json\")\n\tjson.NewEncoder(w).Encode(Response{Status: \"ok\", Message: \"healthy\"})\n}\n",
+      "languages": [
+        "go"
+      ]
+    },
+    {
+      "prefix": "goroutine",
+      "label": "Go Worker Pool with WaitGroup and Context",
+      "body": "package main\n\nimport (\n\t\"context\"\n\t\"sync\"\n)\n\nfunc RunWorkerPool(ctx context.Context, jobs <-chan int, wg *sync.WaitGroup) {\n\tdefer wg.Done()\n\tfor {\n\t\tselect {\n\t\tcase <-ctx.Done():\n\t\t\treturn\n\t\tcase job, ok := <-jobs:\n\t\t\tif !ok {\n\t\t\t\treturn\n\t\t\t}\n\t\t\t_ = job // Process job logic\n\t\t}\n\t}\n}\n",
+      "languages": [
+        "go"
+      ]
+    },
+    {
+      "prefix": "gorm",
+      "label": "Go GORM Database Model",
+      "body": "package main\n\nimport (\n\t\"time\"\n\t\"gorm.io/gorm\"\n)\n\ntype User struct {\n\tID        uint           `gorm:\"primaryKey\" json:\"id\"`\n\tEmail     string         `gorm:\"uniqueIndex;not null\" json:\"email\"`\n\tCreatedAt time.Time      `json:\"created_at\"`\n\tDeletedAt gorm.DeletedAt `gorm:\"index\" json:\"-\"`\n}\n",
+      "languages": [
+        "go"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "id": "go-run",
+      "label": "Go Run",
+      "command": "go run ."
+    },
+    {
+      "id": "go-test",
+      "label": "Go Test All",
+      "command": "go test -v ./..."
+    },
+    {
+      "id": "go-tidy",
+      "label": "Go Mod Tidy",
+      "command": "go mod tidy"
+    },
+    {
+      "id": "go-build",
+      "label": "Go Build Binary",
+      "command": "go build -v -o app.exe ."
+    }
+  ],
+  "api_templates": [
+    {
+      "name": "Go Service Healthcheck",
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/health",
+      "headers": {
+        "Accept": "application/json"
+      },
+      "body": ""
+    }
+  ]
+}

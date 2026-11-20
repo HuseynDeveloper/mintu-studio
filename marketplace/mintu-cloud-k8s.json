@@ -1,0 +1,66 @@
+{
+  "id": "mintu-cloud-k8s",
+  "name": "Kubernetes & Cloud Infrastructure",
+  "version": "1.0.0",
+  "author": "Mintu Community",
+  "description": "Production Kubernetes Deployment, Service, and Ingress manifests, HPA autoscaling, Terraform cloud resources, and kubectl helper commands.",
+  "category": "DevOps",
+  "enabled": true,
+  "ai_rules": [
+    "Always declare explicit CPU and memory resource requests and limits for all Kubernetes containers.",
+    "Implement livenessProbe and readinessProbe on all long-running service pods to ensure zero-downtime rolling updates.",
+    "Enforce non-root execution (securityContext.runAsNonRoot: true) and read-only root filesystems where applicable."
+  ],
+  "snippets": [
+    {
+      "prefix": "k8s-deploy",
+      "label": "Kubernetes Production Deployment Manifest",
+      "body": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: app-deployment\n  labels:\n    app: web-service\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: web-service\n  template:\n    metadata:\n      labels:\n        app: web-service\n    spec:\n      containers:\n      - name: app\n        image: registry.example.com/app:v1.0.0\n        ports:\n        - containerPort: 8080\n        resources:\n          requests:\n            memory: \"128Mi\"\n            cpu: \"100m\"\n          limits:\n            memory: \"512Mi\"\n            cpu: \"500m\"\n        readinessProbe:\n          httpGet:\n            path: /health\n            port: 8080\n          initialDelaySeconds: 5\n          periodSeconds: 10\n",
+      "languages": [
+        "yaml",
+        "yml"
+      ]
+    },
+    {
+      "prefix": "k8s-svc",
+      "label": "Kubernetes ClusterIP / NodePort Service",
+      "body": "apiVersion: v1\nkind: Service\nmetadata:\n  name: app-service\nspec:\n  type: ClusterIP\n  selector:\n    app: web-service\n  ports:\n  - port: 80\n    targetPort: 8080\n    protocol: TCP\n",
+      "languages": [
+        "yaml",
+        "yml"
+      ]
+    },
+    {
+      "prefix": "tf-s3",
+      "label": "Terraform AWS S3 Bucket with Encryption",
+      "body": "resource \"aws_s3_bucket\" \"app_storage\" {\n  bucket = \"my-app-storage-bucket-2026\"\n  force_destroy = false\n\n  tags = {\n    Environment = \"production\"\n    ManagedBy   = \"terraform\"\n  }\n}\n\nresource \"aws_s3_bucket_server_side_encryption_configuration\" \"encryption\" {\n  bucket = aws_s3_bucket.app_storage.id\n  rule {\n    apply_server_side_encryption_by_default {\n      sse_algorithm = \"AES256\"\n    }\n  }\n}\n",
+      "languages": [
+        "hcl",
+        "tf"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "id": "k8s-pods",
+      "label": "Kubectl Get Pods",
+      "command": "kubectl get pods -A"
+    },
+    {
+      "id": "k8s-logs",
+      "label": "Kubectl Follow Logs",
+      "command": "kubectl logs -f --tail=100 deployment/app-deployment"
+    },
+    {
+      "id": "helm-lint",
+      "label": "Helm Chart Lint",
+      "command": "helm lint ."
+    },
+    {
+      "id": "tf-plan",
+      "label": "Terraform Plan",
+      "command": "terraform plan"
+    }
+  ],
+  "api_templates": []
+}

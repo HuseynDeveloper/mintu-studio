@@ -17,7 +17,7 @@ interface MintuExtensionTestSchema {
   api_templates: Array<{ name: string; method: string; url: string; headers: Record<string, string>; body: string }>;
 }
 
-test("Marketplace Registry: All 12 extensions are valid and well-formed", () => {
+test("Marketplace Registry: All 18 extensions are valid and well-formed", () => {
   const regPath = path.resolve(process.cwd(), "marketplace/registry.json");
   assert.ok(fs.existsSync(regPath), "marketplace/registry.json must exist");
 
@@ -25,7 +25,7 @@ test("Marketplace Registry: All 12 extensions are valid and well-formed", () => 
   const extensions: MintuExtensionTestSchema[] = JSON.parse(raw);
 
   assert.ok(Array.isArray(extensions), "Registry must be a JSON array");
-  assert.equal(extensions.length, 12, "Expected 12 curated extensions in marketplace registry");
+  assert.equal(extensions.length, 18, "Expected 18 curated extensions in marketplace registry");
 
   const idSet = new Set<string>();
 
