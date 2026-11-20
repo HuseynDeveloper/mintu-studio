@@ -1,0 +1,77 @@
+﻿{
+    "id":  "mintu-nextjs-fullstack",
+    "name":  "Next.js 15 \u0026 Server Actions Kit",
+    "version":  "1.0.0",
+    "author":  "Mintu Community",
+    "description":  "Next.js 15 App Router architecture, type-safe Server Actions with Zod, Route Handlers, metadata generators, and dev commands.",
+    "category":  "Fullstack",
+    "enabled":  true,
+    "ai_rules":  [
+                     "In Next.js App Router, default to Server Components for data fetching; only add \u0027use client\u0027 when client interactivity, state, or browser APIs are required.",
+                     "When defining Server Actions, always validate input arguments on the server using Zod schemas before performing database queries or mutations.",
+                     "Parallelize independent data fetches with Promise.all() to eliminate async request waterfalls."
+                 ],
+    "snippets":  [
+                     {
+                         "prefix":  "saction",
+                         "label":  "Server Action with Zod Validation",
+                         "body":  "\u0027use server\u0027;\n\nimport { z } from \u0027zod\u0027;\n\nconst InputSchema = z.object({\n  title: z.string().min(1).max(100),\n});\n\nexport async function createItem(formData: FormData) {\n  const parsed = InputSchema.safeParse({\n    title: formData.get(\u0027title\u0027),\n  });\n  if (!parsed.success) {\n    return { success: false, errors: parsed.error.flatten() };\n  }\n  return { success: true };\n}\n",
+                         "languages":  [
+                                           "ts",
+                                           "tsx",
+                                           "js",
+                                           "jsx"
+                                       ]
+                     },
+                     {
+                         "prefix":  "rhandler",
+                         "label":  "Next.js App Router Route Handler (route.ts)",
+                         "body":  "import { NextResponse } from \u0027next/server\u0027;\n\nexport async function GET() {\n  return NextResponse.json({ status: \u0027healthy\u0027, timestamp: Date.now() });\n}\n\nexport async function POST(request: Request) {\n  const body = await request.json();\n  return NextResponse.json({ received: body, ok: true }, { status: 201 });\n}\n",
+                         "languages":  [
+                                           "ts",
+                                           "tsx",
+                                           "js",
+                                           "jsx"
+                                       ]
+                     },
+                     {
+                         "prefix":  "meta",
+                         "label":  "Next.js Dynamic generateMetadata",
+                         "body":  "import type { Metadata } from \u0027next\u0027;\n\nexport async function generateMetadata(): Promise\u003cMetadata\u003e {\n  return {\n    title: \u0027Page Title | Mintu\u0027,\n    description: \u0027Clean high-performance web experience.\u0027,\n    openGraph: {\n      title: \u0027Page Title\u0027,\n      description: \u0027Clean high-performance web experience.\u0027,\n    },\n  };\n}\n",
+                         "languages":  [
+                                           "ts",
+                                           "tsx",
+                                           "js",
+                                           "jsx"
+                                       ]
+                     }
+                 ],
+    "commands":  [
+                     {
+                         "id":  "next-dev",
+                         "label":  "Next.js Dev Server",
+                         "command":  "npm run dev"
+                     },
+                     {
+                         "id":  "next-build",
+                         "label":  "Next.js Production Build",
+                         "command":  "npx next build"
+                     },
+                     {
+                         "id":  "next-lint",
+                         "label":  "Next.js Lint",
+                         "command":  "npx next lint"
+                     }
+                 ],
+    "api_templates":  [
+                          {
+                              "name":  "Local Next.js Health Check",
+                              "method":  "GET",
+                              "url":  "http://localhost:3000/api/health",
+                              "headers":  {
+                                              "Accept":  "application/json"
+                                          },
+                              "body":  ""
+                          }
+                      ]
+}

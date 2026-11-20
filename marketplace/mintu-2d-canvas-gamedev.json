@@ -1,0 +1,58 @@
+﻿{
+    "id":  "mintu-2d-canvas-gamedev",
+    "name":  "2D Canvas \u0026 Game Engine Kit",
+    "version":  "1.0.0",
+    "author":  "Mintu Community",
+    "description":  "HTML5 Canvas 60 FPS game loop, sprite sheet animation manager, AABB collision detection, spatial math, and asset bundle commands.",
+    "category":  "Game Dev",
+    "enabled":  true,
+    "ai_rules":  [
+                     "In canvas and game loops, avoid object allocations (new Vector, new Array) inside requestAnimationFrame render loops to eliminate garbage collection frame drops.",
+                     "Use delta time (dt in seconds) for all physics and movement calculations to ensure framerate-independent gameplay.",
+                     "Clean up event listeners and cancel requestAnimationFrame handles when destroying game viewports."
+                 ],
+    "snippets":  [
+                     {
+                         "prefix":  "gloop",
+                         "label":  "HTML5 Canvas 60 FPS Game Loop",
+                         "body":  "export class GameEngine {\n  private lastTime = performance.now();\n  private animFrameId: number | null = null;\n  private isRunning = false;\n\n  start(): void {\n    this.isRunning = true;\n    this.lastTime = performance.now();\n    this.loop(this.lastTime);\n  }\n\n  private loop = (time: number): void =\u003e {\n    if (!this.isRunning) return;\n    const dt = Math.min(0.1, (time - this.lastTime) / 1000);\n    this.lastTime = time;\n\n    this.update(dt);\n    this.render();\n\n    this.animFrameId = requestAnimationFrame(this.loop);\n  };\n\n  update(dt: number): void {\n    // Physics \u0026 entity update logic\n  }\n\n  render(): void {\n    // Canvas drawing logic\n  }\n\n  stop(): void {\n    this.isRunning = false;\n    if (this.animFrameId) cancelAnimationFrame(this.animFrameId);\n  }\n}\n",
+                         "languages":  [
+                                           "ts",
+                                           "js"
+                                       ]
+                     },
+                     {
+                         "prefix":  "aabb",
+                         "label":  "AABB 2D Collision Detection",
+                         "body":  "export interface Rect {\n  x: number;\n  y: number;\n  w: number;\n  h: number;\n}\n\nexport function checkAABB(a: Rect, b: Rect): boolean {\n  return (\n    a.x \u003c b.x + b.w \u0026\u0026\n    a.x + a.w \u003e b.x \u0026\u0026\n    a.y \u003c b.y + b.h \u0026\u0026\n    a.y + a.h \u003e b.y\n  );\n}\n",
+                         "languages":  [
+                                           "ts",
+                                           "js"
+                                       ]
+                     },
+                     {
+                         "prefix":  "spritesheet",
+                         "label":  "Sprite Sheet Frame Drawing Helper",
+                         "body":  "export function drawSpriteFrame(\n  ctx: CanvasRenderingContext2D,\n  image: CanvasImageSource,\n  frameIndex: number,\n  frameWidth: number,\n  frameHeight: number,\n  destX: number,\n  destY: number,\n  cols: number\n): void {\n  const sx = (frameIndex % cols) * frameWidth;\n  const sy = Math.floor(frameIndex / cols) * frameHeight;\n  ctx.drawImage(image, sx, sy, frameWidth, frameHeight, destX, destY, frameWidth, frameHeight);\n}\n",
+                         "languages":  [
+                                           "ts",
+                                           "js"
+                                       ]
+                     }
+                 ],
+    "commands":  [
+                     {
+                         "id":  "vite-dev",
+                         "label":  "Game Dev Server (Vite)",
+                         "command":  "npm run dev"
+                     },
+                     {
+                         "id":  "build-preview",
+                         "label":  "Build \u0026 Preview Game",
+                         "command":  "npm run build \u0026\u0026 npm run preview"
+                     }
+                 ],
+    "api_templates":  [
+
+                      ]
+}

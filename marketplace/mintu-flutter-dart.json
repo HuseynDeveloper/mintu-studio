@@ -1,0 +1,78 @@
+﻿{
+    "id":  "mintu-flutter-dart",
+    "name":  "Flutter \u0026 Dart Mobile Toolkit",
+    "version":  "1.0.0",
+    "author":  "Mintu Community",
+    "description":  "Stateful/Stateless widgets, Riverpod providers, Dio HTTP clients, leak-safe lifecycle rules, and one-click Flutter build/test commands.",
+    "category":  "Mobile",
+    "enabled":  true,
+    "ai_rules":  [
+                     "When writing Flutter widgets, separate presentation from business logic; keep build() methods pure and extract sub-trees into const widgets.",
+                     "Always dispose controllers (TextEditingController, AnimationController, ScrollController) in dispose() to prevent memory leaks.",
+                     "Use LayoutBuilder or MediaQuery for responsive adaptive layouts across mobile, tablet, and desktop form factors."
+                 ],
+    "snippets":  [
+                     {
+                         "prefix":  "stful",
+                         "label":  "Flutter StatefulWidget",
+                         "body":  "import \u0027package:flutter/material.dart\u0027;\n\nclass SampleWidget extends StatefulWidget {\n  const SampleWidget({super.key});\n\n  @override\n  State\u003cSampleWidget\u003e createState() =\u003e _SampleWidgetState();\n}\n\nclass _SampleWidgetState extends State\u003cSampleWidget\u003e {\n  @override\n  Widget build(BuildContext context) {\n    return const Scaffold(\n      body: Center(child: Text(\u0027Hello Mintu\u0027)),\n    );\n  }\n}\n",
+                         "languages":  [
+                                           "dart"
+                                       ]
+                     },
+                     {
+                         "prefix":  "stless",
+                         "label":  "Flutter StatelessWidget",
+                         "body":  "import \u0027package:flutter/material.dart\u0027;\n\nclass SimpleCard extends StatelessWidget {\n  final String title;\n  const SimpleCard({super.key, required this.title});\n\n  @override\n  Widget build(BuildContext context) {\n    return Card(\n      child: Padding(\n        padding: const EdgeInsets.all(16.0),\n        child: Text(title),\n      ),\n    );\n  }\n}\n",
+                         "languages":  [
+                                           "dart"
+                                       ]
+                     },
+                     {
+                         "prefix":  "riverpod",
+                         "label":  "Riverpod Notifier Provider",
+                         "body":  "import \u0027package:flutter_riverpod/flutter_riverpod.dart\u0027;\n\nclass CounterNotifier extends Notifier\u003cint\u003e {\n  @override\n  int build() =\u003e 0;\n  void increment() =\u003e state++;\n}\n\nfinal counterProvider = NotifierProvider\u003cCounterNotifier, int\u003e(CounterNotifier.new);\n",
+                         "languages":  [
+                                           "dart"
+                                       ]
+                     },
+                     {
+                         "prefix":  "diocli",
+                         "label":  "Dio HTTP Client Singleton",
+                         "body":  "import \u0027package:dio/dio.dart\u0027;\n\nfinal dio = Dio(\n  BaseOptions(\n    baseUrl: \u0027https://api.example.com\u0027,\n    connectTimeout: const Duration(seconds: 10),\n    receiveTimeout: const Duration(seconds: 10),\n    headers: {\u0027Accept\u0027: \u0027application/json\u0027},\n  ),\n);\n",
+                         "languages":  [
+                                           "dart"
+                                       ]
+                     }
+                 ],
+    "commands":  [
+                     {
+                         "id":  "flutter-run",
+                         "label":  "Flutter Run",
+                         "command":  "flutter run"
+                     },
+                     {
+                         "id":  "flutter-pub-get",
+                         "label":  "Flutter Pub Get",
+                         "command":  "flutter pub get"
+                     },
+                     {
+                         "id":  "flutter-test",
+                         "label":  "Flutter Test",
+                         "command":  "flutter test"
+                     },
+                     {
+                         "id":  "dart-analyze",
+                         "label":  "Dart Analyze",
+                         "command":  "dart analyze"
+                     },
+                     {
+                         "id":  "flutter-build-apk",
+                         "label":  "Build Release APK",
+                         "command":  "flutter build apk --release"
+                     }
+                 ],
+    "api_templates":  [
+
+                      ]
+}

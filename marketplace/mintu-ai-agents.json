@@ -1,0 +1,74 @@
+﻿{
+    "id":  "mintu-ai-agents",
+    "name":  "AI Agents \u0026 LLM Tool-Calling Lab",
+    "version":  "1.0.0",
+    "author":  "Mintu Community",
+    "description":  "Tool calling schemas, structured outputs with Zod/Pydantic, streaming chat loops, defensive prompting, and ready-to-test LLM endpoints.",
+    "category":  "AI \u0026 ML",
+    "enabled":  true,
+    "ai_rules":  [
+                     "When building tool-calling agents, strictly define parameters with JSON Schemas or Zod objects and provide clear descriptions for each parameter.",
+                     "Always validate LLM output schema defensively and implement automatic retry or error recovery when the model generates invalid JSON.",
+                     "Keep system prompts concise, deterministic, and modular; separate instructions from untrusted user data."
+                 ],
+    "snippets":  [
+                     {
+                         "prefix":  "llmtool",
+                         "label":  "LLM Function Tool Definition",
+                         "body":  "export const searchTool = {\n  type: \u0027function\u0027,\n  function: {\n    name: \u0027search_database\u0027,\n    description: \u0027Searches database records matching a query filter.\u0027,\n    parameters: {\n      type: \u0027object\u0027,\n      properties: {\n        query: { type: \u0027string\u0027, description: \u0027Search keywords\u0027 },\n        limit: { type: \u0027number\u0027, description: \u0027Maximum results to return\u0027 },\n      },\n      required: [\u0027query\u0027],\n    },\n  },\n};\n",
+                         "languages":  [
+                                           "ts",
+                                           "js"
+                                       ]
+                     },
+                     {
+                         "prefix":  "zodstruct",
+                         "label":  "Zod Schema for Structured LLM Outputs",
+                         "body":  "import { z } from \u0027zod\u0027;\n\nexport const AgentResponseSchema = z.object({\n  thought: z.string().describe(\u0027Step-by-step reasoning\u0027),\n  action: z.enum([\u0027search\u0027, \u0027execute\u0027, \u0027finish\u0027]),\n  parameters: z.record(z.any()),\n  finalAnswer: z.string().optional(),\n});\n\nexport type AgentResponse = z.infer\u003ctypeof AgentResponseSchema\u003e;\n",
+                         "languages":  [
+                                           "ts",
+                                           "js"
+                                       ]
+                     },
+                     {
+                         "prefix":  "pytool",
+                         "label":  "Python Pydantic Agent Tool",
+                         "body":  "from pydantic import BaseModel, Field\nfrom typing import Optional\n\nclass WeatherInput(BaseModel):\n    city: str = Field(description=\u0027City name, e.g. Baku, Paris\u0027)\n    units: Optional[str] = Field(default=\u0027celsius\u0027, description=\u0027Temperature units\u0027)\n\ndef get_weather(input_data: WeatherInput) -\u003e dict:\n    \u0027\u0027\u0027Retrieves real-time weather observations for a city.\u0027\u0027\u0027\n    return {\u0027city\u0027: input_data.city, \u0027temperature\u0027: 21.5, \u0027units\u0027: input_data.units}\n",
+                         "languages":  [
+                                           "py"
+                                       ]
+                     }
+                 ],
+    "commands":  [
+                     {
+                         "id":  "ollama-list",
+                         "label":  "Ollama List Models",
+                         "command":  "ollama list"
+                     },
+                     {
+                         "id":  "ollama-pull",
+                         "label":  "Ollama Pull Qwen 2.5 Coder",
+                         "command":  "ollama pull qwen2.5-coder:7b"
+                     }
+                 ],
+    "api_templates":  [
+                          {
+                              "name":  "Ollama Local Chat Completion",
+                              "method":  "POST",
+                              "url":  "http://127.0.0.1:11434/api/chat",
+                              "headers":  {
+                                              "Content-Type":  "application/json"
+                                          },
+                              "body":  "{\n  \"model\": \"qwen2.5-coder:7b\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Write a quicksort in Rust\"\n    }\n  ],\n  \"stream\": false\n}"
+                          },
+                          {
+                              "name":  "OpenAI-Compatible Local Endpoint (llama-server)",
+                              "method":  "POST",
+                              "url":  "http://127.0.0.1:8080/v1/chat/completions",
+                              "headers":  {
+                                              "Content-Type":  "application/json"
+                                          },
+                              "body":  "{\n  \"model\": \"default\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello from Mintu Studio!\"\n    }\n  ]\n}"
+                          }
+                      ]
+}

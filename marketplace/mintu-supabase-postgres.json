@@ -1,0 +1,80 @@
+﻿{
+    "id":  "mintu-supabase-postgres",
+    "name":  "Supabase \u0026 PostgreSQL Pro",
+    "version":  "1.0.0",
+    "author":  "Mintu Community",
+    "description":  "Row Level Security (RLS) policies, PostgreSQL triggers and functions, typed Supabase client boilerplate, and REST testing templates.",
+    "category":  "Database",
+    "enabled":  true,
+    "ai_rules":  [
+                     "Always enable Row Level Security (ALTER TABLE table_name ENABLE ROW LEVEL SECURITY) on public tables and write explicit policies for select, insert, update, and delete.",
+                     "Never expose service_role private keys to frontend client code; keep elevated operations in protected server handlers.",
+                     "Always use parameterized queries or the Supabase SDK query builder to eliminate SQL injection vulnerabilities."
+                 ],
+    "snippets":  [
+                     {
+                         "prefix":  "rlspol",
+                         "label":  "Postgres RLS Owner Policy",
+                         "body":  "-- Enable RLS\nALTER TABLE profiles ENABLE ROW LEVEL SECURITY;\n\n-- Create Owner Policy\nCREATE POLICY \"Users can manage their own profile\"\nON profiles FOR ALL\nTO authenticated\nUSING ((select auth.uid()) = user_id)\nWITH CHECK ((select auth.uid()) = user_id);\n",
+                         "languages":  [
+                                           "sql"
+                                       ]
+                     },
+                     {
+                         "prefix":  "pgfunc",
+                         "label":  "Postgres Updated_At Trigger Function",
+                         "body":  "CREATE OR REPLACE FUNCTION set_updated_at()\nRETURNS TRIGGER AS $$\nBEGIN\n  NEW.updated_at = NOW();\n  RETURN NEW;\nEND;\n$$ LANGUAGE plpgsql;\n\nCREATE TRIGGER handle_updated_at\nBEFORE UPDATE ON items\nFOR EACH ROW\nEXECUTE FUNCTION set_updated_at();\n",
+                         "languages":  [
+                                           "sql"
+                                       ]
+                     },
+                     {
+                         "prefix":  "supacli",
+                         "label":  "Supabase Client Initialization",
+                         "body":  "import { createClient } from \u0027@supabase/supabase-js\u0027;\n\nconst supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;\nconst supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;\n\nexport const supabase = createClient(supabaseUrl, supabaseAnonKey);\n",
+                         "languages":  [
+                                           "ts",
+                                           "tsx",
+                                           "js",
+                                           "jsx"
+                                       ]
+                     }
+                 ],
+    "commands":  [
+                     {
+                         "id":  "supa-status",
+                         "label":  "Supabase Status",
+                         "command":  "npx supabase status"
+                     },
+                     {
+                         "id":  "supa-start",
+                         "label":  "Supabase Start Local",
+                         "command":  "npx supabase start"
+                     },
+                     {
+                         "id":  "supa-types",
+                         "label":  "Gen Supabase Types",
+                         "command":  "npx supabase gen types typescript --local \u003e types/supabase.ts"
+                     }
+                 ],
+    "api_templates":  [
+                          {
+                              "name":  "Supabase Local REST Health",
+                              "method":  "GET",
+                              "url":  "http://127.0.0.1:54321/rest/v1/",
+                              "headers":  {
+                                              "Accept":  "application/json"
+                                          },
+                              "body":  ""
+                          },
+                          {
+                              "name":  "Supabase Auth Token Grant",
+                              "method":  "POST",
+                              "url":  "http://127.0.0.1:54321/auth/v1/token?grant_type=password",
+                              "headers":  {
+                                              "Content-Type":  "application/json"
+                                          },
+                              "body":  "{\n  \"email\": \"user@example.com\",\n  \"password\": \"secretpassword\"\n}"
+                          }
+                      ]
+}
